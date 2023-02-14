@@ -1,9 +1,15 @@
-import React from 'react';
+import React from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Main from "./components/Main"
 
 function App() {
   return (
-    <h1>LdhBenecia Portfolio Start</h1>
-  );
+    <Router>
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
+    </Router>
+  )
 }
 
-export default App;
+export default App
