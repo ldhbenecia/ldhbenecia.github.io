@@ -558,3 +558,97 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.block {
+  display: block;
+}
+
+.flex {
+  display: flex;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-\[32rem\] {
+  width: 32rem;
+}
+
+.max-w-full {
+  max-width: 100%;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@font-face {
+  font-family: "NanumLight";
+
+  src: url("../static/font/NanumSquareNeo-aLt.ttf");
+}
+
+@font-face {
+  font-family: "NanumRegular";
+
+  src: url("../static/font/NanumSquareNeo-bRg.ttf");
+}
+
+@font-face {
+  font-family: "NanumBold";
+
+  src: url("../static/font/NanumSquareNeo-cBd.ttf");
+}
+
+@media (min-width: 768px) {
+  .md\:ml-36 {
+    margin-left: 9rem;
+  }
+
+  .md\:mr-\[52px\] {
+    margin-right: 52px;
+  }
+
+  .md\:ml-20 {
+    margin-left: 5rem;
+  }
+
+  .md\:w-\[32rem\] {
+    width: 32rem;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
