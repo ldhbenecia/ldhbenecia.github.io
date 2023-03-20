@@ -21,7 +21,7 @@ github_username: ldhbenecia
 # dribbble_username: jekyll
 # facebook_username: jekyll
 # flickr_username: jekyll
-instagram_username: ldhbenecia_
+instagram_username: ldh_benecia_
 linkedin_username: ldhbenecia
 # xing_username: jekyll
 # pinterest_username: jekyll
@@ -30,10 +30,10 @@ linkedin_username: ldhbenecia
 # orcid_username: 0000-0000-0000-0000
 
 # Additional icon links
-additional_links:
-- title: itsgoingto.be
-  icon: fas fa-globe
-  url: https://www.itsgoingto.be
+#additional_links:
+# - title: itsgoingto.be
+#  icon: fas fa-globe
+#  url: https://www.itsgoingto.be
 # - title: another link
 #   icon: font awesome brand icon name (eg. fab fa-twitter) (https://fontawesome.com/icons?d=gallery&m=free)
 #   url: Link url (eg. https://google.com)
@@ -73,32 +73,31 @@ content:
         description: | # this will include new lines to allow paragraphs
           설명
 
-  - title: Experience # Title for the section
+  - title: Career # Title for the section
     layout: list # Type of content section (list/text)
     content:
       - layout: left
-        title: 경력회사
-        link: 경력 주소
+        title: Career
+        # link: 경력 주소
         # link_text: boringcompany.com
-        sub_title: 무슨 직무
-        caption: 기간 언제부터
+        # sub_title: 무슨 직무
+        # caption: 기간 언제부터
         quote: >
-          소제
+          Summary of experiences so far
         description: | # this will include new lines to allow paragraphs
-            설명
+            2023.03 ~ 한국외국어대학교 학생 IT 자치 기구 훕스토리(Hufstory) 회장
 
   - title: Education # Title for the section
     layout: list # Type of content section (list/text)
     content:
       - layout: left
-        title: Hankuk University of Foreign Studies.
+        title: Hankuk University of Foreign Studies
         caption: 2019 - 2025
         sub_title: Department of Computer and Electronic System Engineering
         quote: >
           Hankuk University of Foreing Studies, aka HUFS, is best Foreign-study education institution in South Korea.
         description: | # this will include new lines to allow paragraphs
-          2019 한국외국어대학교 컴퓨터전자시스템공학부 재학
-          2023 한국외국어대학교 학생 IT 자치 기구 - 훕스토리(Hufstory) 회장
+          2019 한국외국어대학교 컴퓨터전자시스템공학부 입학
 
   - title: A Little More About Me
     layout: text
