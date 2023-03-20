@@ -82,8 +82,8 @@ content:
         # link_text: boringcompany.com
         # sub_title: 무슨 직무
         # caption: 기간 언제부터
-        quote: >
-          Summary of experiences so far
+        #quote: >
+        #  Summary of experiences so far
         description: | # this will include new lines to allow paragraphs
             2023.03 ~ 한국외국어대학교 학생 IT 자치 기구 훕스토리(Hufstory) 회장
 
@@ -94,8 +94,8 @@ content:
         title: Hankuk University of Foreign Studies
         caption: 2019 - 2025
         sub_title: Department of Computer and Electronic System Engineering
-        quote: >
-          Hankuk University of Foreing Studies, aka HUFS, is best Foreign-study education institution in South Korea.
+        #quote: >
+        #  Hankuk University of Foreing Studies, aka HUFS, is best Foreign-study education institution in South Korea.
         description: | # this will include new lines to allow paragraphs
           2019 한국외국어대학교 컴퓨터전자시스템공학부 입학
 
