@@ -12,7 +12,7 @@ export default function Main() {
           </h1>
           <p className="mb-8 leading-relaxed">포트폴리오 설명란</p>
           <div className="flex justify-center">
-            <Link href="projects" className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+            <Link href="projects" className="inline-flex text-white dark:text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg">
               Projects
             </Link>
             <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
