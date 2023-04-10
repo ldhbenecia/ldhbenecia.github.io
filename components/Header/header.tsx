@@ -1,5 +1,5 @@
-import Link from "next/link";
-import DarkModeButton from "./darkModeButton";
+import DarkModeButton from "../Main/darkModeButton";
+
 
 export default function Header() {
   return (
@@ -20,9 +20,16 @@ export default function Header() {
           </svg>
           <span className="ml-3 text-xl">DongHyeok Lim</span>
         </a>
-        <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-          <Link href="/" className="mr-5 hover:text-gray-900">Main</Link>
-          <Link href="projects" className="mr-5 hover:text-gray-900">Projects</Link>
+        <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <button className="header-button mr-5 hover:text-gray-900">
+            Main
+          </button>
+          <button className="header-button mr-5 hover:text-gray-900">
+            Introduce
+          </button>
+          <button className="header-button mr-5 hover:text-gray-900">
+            Projects
+          </button>
         </nav>
         {/* 다크모드 버튼 작업 */}
         <DarkModeButton />
