@@ -5,6 +5,7 @@ import Layout from "@/components/layout";
 import Main from "@/components/Main/main";
 import Projects from "@/components/Projects/projects";
 import Header from "@/components/Header/header";
+import Footer from "@/components/Footer/footer";
 
 const Home: React.FC = () => {
   const mainRef = React.useRef<HTMLDivElement>(null);
@@ -14,11 +15,14 @@ const Home: React.FC = () => {
   return (
     <Layout>
       <Header mainRef={mainRef} introRef={introRef} projectsRef={projectsRef} />
-      <section className="flex min-h-screen flex-col items-center justify-center text-gray-600 body-font">
-        <Main mainRef={mainRef} />
-        <Introduce introRef={introRef} />
-        <Projects projectsRef={projectsRef} />
-      </section>
+      <div>
+        <section className="flex min-h-screen flex-col items-center justify-center text-gray-600 body-font">
+          <Main mainRef={mainRef} />
+          <Introduce introRef={introRef} />
+          <Projects projectsRef={projectsRef} />
+        </section>
+      </div>
+      <Footer />
     </Layout>
   );
 };
