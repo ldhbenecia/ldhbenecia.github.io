@@ -1,9 +1,20 @@
+import React from "react";
+
 import DarkModeButton from "../Main/darkModeButton";
 
+type HeaderProps = {
+  mainRef: React.RefObject<HTMLDivElement>;
+  introRef: React.RefObject<HTMLDivElement>;
+  projectsRef: React.RefObject<HTMLDivElement>;
+};
 
-export default function Header() {
+const Header: React.FC<HeaderProps> = ({ mainRef, introRef, projectsRef }) => {
+  const handleClick = (ref: React.RefObject<HTMLDivElement>) => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <header className="text-gray-600 body-font">
+    <header className="fixed inset-x-0 top-0 z-10 text-gray-600 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
           <svg
@@ -21,13 +32,22 @@ export default function Header() {
           <span className="ml-3 text-xl">DongHyeok Lim</span>
         </a>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          <button className="header-button mr-5 hover:text-gray-900">
+          <button
+            onClick={() => handleClick(mainRef)}
+            className="header-button mr-5 hover:text-gray-900 dark:hover:text-slate-50"
+          >
             Main
           </button>
-          <button className="header-button mr-5 hover:text-gray-900">
+          <button
+            onClick={() => handleClick(introRef)}
+            className="header-button mr-5 hover:text-gray-900 dark:hover:text-slate-50"
+          >
             Introduce
           </button>
-          <button className="header-button mr-5 hover:text-gray-900">
+          <button
+            onClick={() => handleClick(projectsRef)}
+            className="header-button mr-5 hover:text-gray-900 dark:hover:text-slate-50"
+          >
             Projects
           </button>
         </nav>
@@ -36,4 +56,6 @@ export default function Header() {
       </div>
     </header>
   );
-}
+};
+
+export default Header;
