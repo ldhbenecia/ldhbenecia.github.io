@@ -1,11 +1,13 @@
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="py-8 border-t border-border">
       <div className="max-w-5xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-3 md:mb-0">
             <p className="text-xs text-muted-foreground">
-              © 2025 임동혁 (Lim Dong Hyeok). All rights reserved.
+              © {currentYear} 임동혁 (Lim Dong Hyeok). All rights reserved.
             </p>
           </div>
           
