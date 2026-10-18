@@ -60,11 +60,16 @@ export function Topology({ statusId }: { statusId: string }) {
     let delivered = 0
     let rateAt = performance.now()
 
-    // 좁은 화면은 그래프를 위쪽 전체 폭에, 넓은 화면은 문구가 놓이는 왼쪽 아래를 비워 둠
+    // 그래프는 본문 열(--max) 안쪽에 둠. 넓은 화면은 문구가 놓이는 왼쪽 아래를 비워 둠
     const place = () => {
       const wide = w > 860
+      const css = getComputedStyle(document.documentElement)
+      const maxW = parseFloat(css.getPropertyValue('--max')) || 1200
+      const margin = wide ? 32 : 16
+      const left = Math.max(margin, (w - maxW) / 2 + margin)
+      const cw = w - left * 2
       for (const b of bodies) {
-        b.ax = wide ? (0.44 + (b.x - 0.3) * 0.8) * w : (0.03 + (b.x - 0.3) * 1.05) * w
+        b.ax = wide ? left + (0.42 + (b.x - 0.3) * 0.78) * cw : left + (b.x - 0.3) * 1.02 * cw
         b.ay = wide ? (0.14 + b.y * 0.66) * h : (0.12 + b.y * 0.44) * h
         if (b.px === 0 && b.py === 0) {
           b.px = b.ax
