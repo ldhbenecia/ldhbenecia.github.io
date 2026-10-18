@@ -62,10 +62,6 @@
   min-height: 1.6em;
 }
 
-.box {
-  --fs: clamp(3.5rem, 8vw, 7.5rem);
-}
-
 /* 막대 길이는 경과 시간 / 원래 걸리던 시간 */
 .bar {
   height: 6px;
@@ -80,6 +76,7 @@
   height: 100%;
   background: var(--muted);
   transform-origin: left;
+  transition: transform 100ms linear; /* 0.1초 단위로 갱신되는 사이를 메움 */
 }
 
 .barAfter > span {
@@ -89,13 +86,13 @@
 .figure {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: var(--fs);
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
   line-height: 1;
   letter-spacing: -0.05em;
   white-space: nowrap;
 }
 
-.boxAfter .figure {
+.figureAfter {
   color: var(--accent);
 }
 
@@ -116,7 +113,7 @@
     margin-top: 64px;
   }
 
-  .box {
-    --fs: 18vw;
+  .figure {
+    font-size: 18vw;
   }
 }

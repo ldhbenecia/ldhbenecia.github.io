@@ -15,3 +15,14 @@ export const impact: ImpactRow[] = [
   { year: '2025', where: 'Sent', what: '채팅 이력 조회, 동시 1,000명', before: '16.18s', after: '22.85ms' },
   { year: '2025', where: 'Mono Mail', what: '메일 인증코드 추출 응답', before: '13s', after: '2s' },
 ]
+
+// 쿼리 재생 섹션. 실제로 걸리던 시간 그대로 재생하므로 값을 줄이면 비교의 의미가 사라짐
+export const race = {
+  beforeMs: 18_000,
+  afterMs: 53,
+  rows: '5,001건',
+  beforeLabel: 'PK 전량 스캔',
+  afterLabel: '보조 인덱스, p99 98ms',
+  story:
+    '캐시워크 챌린지 채널 구독자 53만 명을 뽑는 주 1회 크론이 3,889만 행을 전부 읽고 있었습니다. ORDER BY … LIMIT 때문에 옵티마이저가 PK 스캔을 골랐고, 찾는 행은 테이블 끝에 몰려 있었습니다. 통계 갱신, 히스토그램, LIMIT 조정을 하나씩 검증해 기각한 뒤 보조 인덱스를 강제했습니다.',
+}
