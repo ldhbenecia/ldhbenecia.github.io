@@ -4,7 +4,6 @@
 
 .chapter {
   padding-top: var(--gap-section);
-  scroll-margin-top: 24px;
 }
 
 .head {
@@ -115,15 +114,16 @@
   color: var(--muted);
 }
 
+/* 화면 캡처는 본문 폭을 다 채우지 않음. 한눈에 들어오는 크기로 */
 .wideShot {
-  max-width: var(--max);
-  margin: 80px auto 0;
+  max-width: calc(880px + 2 * var(--margin));
+  margin: 72px auto 0;
   padding-inline: var(--margin);
 }
 
 
 .secondShot {
-  width: min(100%, 860px);
+  width: min(100%, 640px);
   justify-self: end;
 }
 
@@ -136,7 +136,7 @@
 
 .factValue {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 1.5rem + 5vw, 6rem);
+  font-size: clamp(2.25rem, 1.2rem + 3.5vw, 4.25rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -195,7 +195,9 @@
 
 .sideShot {
   position: sticky;
-  top: 32px;
+  top: 96px;
+  width: min(100%, 420px);
+  justify-self: end;
 }
 
 /* pair: 화면 두 장 왼쪽, 글 오른쪽 */
@@ -215,6 +217,7 @@
 .pairShots {
   display: grid;
   gap: 24px;
+  max-width: 720px;
 }
 
 .pairSecond {
@@ -235,7 +238,7 @@
   align-items: center;
   gap: 10px;
   font-family: var(--font-display);
-  font-size: clamp(1.125rem, 0.8rem + 1vw, 1.625rem);
+  font-size: clamp(1rem, 0.8rem + 0.6vw, 1.25rem);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.02em;

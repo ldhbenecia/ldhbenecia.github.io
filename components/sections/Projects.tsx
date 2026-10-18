@@ -5,7 +5,7 @@ import styles from './Projects.module.css'
 const layoutOf: Record<string, 'wide' | 'side' | 'pair' | 'pipeline' | 'text'> = {
   mono: 'wide',
   cairn: 'pair',
-  morris: 'wide',
+  morris: 'side',
   infra: 'pipeline',
   orbit: 'side',
   sent: 'text',
