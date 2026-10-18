@@ -24,20 +24,20 @@ const readColors = () => {
 
 const REPEL_RADIUS = 150
 const HOVER_RADIUS = 26
-const LABEL_ROOM = 112 // 가장 긴 라벨(sealed-secrets) 폭
 
 type Body = TopoNode & { ax: number; ay: number; px: number; py: number; vx: number; vy: number; phase: number; flash: number }
 type Pulse = { from: number; to: number; t: number; speed: number }
 
-export function Topology({ statusId }: { statusId: string }) {
+export function Topology() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const statusRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas?.getContext('2d')
     if (!canvas || !ctx) return
     const host = canvas.parentElement as HTMLElement
-    const status = document.getElementById(statusId)
+    const status = statusRef.current
     const reduced = prefersReducedMotion()
     // canvas 의 font 에는 CSS 변수를 쓸 수 없어 계산된 이름을 넣음
     const family = getComputedStyle(document.documentElement).getPropertyValue('--font-geist').trim() || 'system-ui'
@@ -53,8 +53,12 @@ export function Topology({ statusId }: { statusId: string }) {
     let w = 0
     let h = 0
     let dpr = 1
+    let originX = 0 // 문서 기준 host 의 왼쪽 위. pointermove 마다 레이아웃을 읽지 않으려고 resize 때 계산
+    let originY = 0
+    let inView = false
     const mouse = { x: -9999, y: -9999 }
     let hovered = -1
+    let shownHover = -1
     let raf = 0
     let running = false
     let last = performance.now()
@@ -62,18 +66,24 @@ export function Topology({ statusId }: { statusId: string }) {
     let delivered = 0
     let rateAt = performance.now()
 
-    // 그래프는 본문 열(--max) 안쪽에 둠. 넓은 화면은 문구가 놓이는 왼쪽 아래를 비워 둠
+    // 그래프는 히어로 글이 놓인 열(data-topo-column) 안쪽에 둠. 넓은 화면은 글이 놓이는 왼쪽 아래를 비워 둠
     const place = () => {
-      const wide = w > 860
-      const css = getComputedStyle(document.documentElement)
-      const maxW = parseFloat(css.getPropertyValue('--max')) || 1200
-      const margin = wide ? 32 : 16
-      const left = Math.max(margin, (w - maxW) / 2 + margin)
-      const cw = w - left * 2
+      const wide = window.matchMedia('(min-width: 961px)').matches
+      const col = host.querySelector<HTMLElement>('[data-topo-column]')
+      let left = 16
+      let cw = w - 32
+      if (col) {
+        const cs = getComputedStyle(col)
+        const padL = parseFloat(cs.paddingLeft)
+        left = col.getBoundingClientRect().left - host.getBoundingClientRect().left + padL
+        cw = col.clientWidth - padL - parseFloat(cs.paddingRight)
+      }
+      ctx.font = labelFont
+      const labelRoom = Math.max(...bodies.map((b) => ctx.measureText(b.label).width)) + 14
       for (const b of bodies) {
-        // 노드 x 범위(0.3~0.94)를 펼쳐 쓰고, 오른쪽엔 라벨이 들어갈 자리를 남김
+        // 노드 x 범위(0.3~0.94)를 펼쳐 쓰고, 오른쪽엔 가장 긴 라벨이 들어갈 자리를 남김
         const t = (b.x - 0.3) / 0.64
-        b.ax = wide ? left + (0.42 + t * 0.5) * cw : left + 6 + t * (cw - 6 - LABEL_ROOM)
+        b.ax = wide ? left + (0.42 + t * 0.5) * cw : left + 6 + t * (cw - 6 - labelRoom)
         b.ay = wide ? (0.14 + b.y * 0.66) * h : (0.12 + b.y * 0.44) * h
         if (b.px === 0 && b.py === 0) {
           b.px = b.ax
@@ -86,6 +96,8 @@ export function Topology({ statusId }: { statusId: string }) {
       const r = host.getBoundingClientRect()
       w = r.width
       h = r.height
+      originX = r.left + window.scrollX
+      originY = r.top + window.scrollY
       dpr = Math.min(window.devicePixelRatio || 1, 2)
       canvas.width = Math.round(w * dpr)
       canvas.height = Math.round(h * dpr)
@@ -157,37 +169,43 @@ export function Topology({ statusId }: { statusId: string }) {
       })
       const hot = hovered >= 0 ? neighbours[hovered] : null
 
+      // 같은 색의 선은 한 경로로 모아 한 번에 그림
       ctx.lineWidth = 1
-      for (const [a, b] of edges) {
-        const isHot = hovered === a || hovered === b
-        ctx.strokeStyle = isHot ? colors.lineHot : colors.line
+      for (const hotPass of [false, true]) {
+        ctx.strokeStyle = hotPass ? colors.lineHot : colors.line
         ctx.beginPath()
-        ctx.moveTo(bodies[a].px, bodies[a].py)
-        ctx.lineTo(bodies[b].px, bodies[b].py)
+        for (const [a, b] of edges) {
+          if ((hovered === a || hovered === b) !== hotPass) continue
+          ctx.moveTo(bodies[a].px, bodies[a].py)
+          ctx.lineTo(bodies[b].px, bodies[b].py)
+        }
         ctx.stroke()
       }
 
+      ctx.strokeStyle = colors.pulse
+      ctx.fillStyle = colors.pulse
+      ctx.lineWidth = 1.5
+      ctx.globalAlpha = 0.6
+      ctx.beginPath()
       for (const p of pulses) {
         const a = bodies[p.from]
         const b = bodies[p.to]
-        const t = p.t
-        const x = a.px + (b.px - a.px) * t
-        const y = a.py + (b.py - a.py) * t
-        const tx = a.px + (b.px - a.px) * Math.max(0, t - 0.08)
-        const ty = a.py + (b.py - a.py) * Math.max(0, t - 0.08)
-        ctx.strokeStyle = colors.pulse
-        ctx.lineWidth = 1.5
-        ctx.globalAlpha = 0.6
-        ctx.beginPath()
-        ctx.moveTo(tx, ty)
-        ctx.lineTo(x, y)
-        ctx.stroke()
-        ctx.globalAlpha = 1
-        ctx.fillStyle = colors.pulse
-        ctx.beginPath()
-        ctx.arc(x, y, 1.6, 0, Math.PI * 2)
-        ctx.fill()
+        const tail = Math.max(0, p.t - 0.08)
+        ctx.moveTo(a.px + (b.px - a.px) * tail, a.py + (b.py - a.py) * tail)
+        ctx.lineTo(a.px + (b.px - a.px) * p.t, a.py + (b.py - a.py) * p.t)
       }
+      ctx.stroke()
+      ctx.globalAlpha = 1
+      ctx.beginPath()
+      for (const p of pulses) {
+        const a = bodies[p.from]
+        const b = bodies[p.to]
+        const x = a.px + (b.px - a.px) * p.t
+        const y = a.py + (b.py - a.py) * p.t
+        ctx.moveTo(x + 1.6, y)
+        ctx.arc(x, y, 1.6, 0, Math.PI * 2)
+      }
+      ctx.fill()
 
       ctx.font = labelFont
       ctx.textBaseline = 'middle'
@@ -209,7 +227,10 @@ export function Topology({ statusId }: { statusId: string }) {
         ctx.fillStyle = isHover || isNear ? colors.labelHot : colors.label
         ctx.fillText(b.label, b.px + 10, b.py)
       })
-      host.style.cursor = hovered >= 0 ? 'crosshair' : ''
+      if (hovered !== shownHover) {
+        host.style.cursor = hovered >= 0 ? 'crosshair' : ''
+        shownHover = hovered
+      }
     }
 
     const frame = (now: number) => {
@@ -232,9 +253,8 @@ export function Topology({ statusId }: { statusId: string }) {
     }
 
     const onMove = (e: PointerEvent) => {
-      const r = host.getBoundingClientRect()
-      mouse.x = e.clientX - r.left
-      mouse.y = e.clientY - r.top
+      mouse.x = e.pageX - originX
+      mouse.y = e.pageY - originY
       if (reduced) draw()
     }
     const onLeave = () => {
@@ -242,7 +262,8 @@ export function Topology({ statusId }: { statusId: string }) {
       mouse.y = -9999
       if (reduced) draw()
     }
-    const onVisibility = () => (document.hidden ? stop() : start())
+    // 탭이 다시 보여도 히어로가 화면 밖이면 그리지 않음
+    const onVisibility = () => (document.hidden || !inView ? stop() : start())
 
     resize()
     const themeWatch = new MutationObserver(() => {
@@ -253,7 +274,11 @@ export function Topology({ statusId }: { statusId: string }) {
     const ro = new ResizeObserver(resize)
     ro.observe(host)
     // 화면 밖에 있을 때는 그리지 않음
-    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()))
+    const io = new IntersectionObserver(([e]) => {
+      inView = e.isIntersecting
+      if (inView && !document.hidden) start()
+      else stop()
+    })
     io.observe(host)
     host.addEventListener('pointermove', onMove)
     host.addEventListener('pointerleave', onLeave)
@@ -269,7 +294,15 @@ export function Topology({ statusId }: { statusId: string }) {
       host.removeEventListener('pointerleave', onLeave)
       document.removeEventListener('visibilitychange', onVisibility)
     }
-  }, [statusId])
+  }, [])
 
-  return <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
+  return (
+    <>
+      <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
+      <p className={styles.status}>
+        <span className={styles.dot} aria-hidden="true" />
+        <span ref={statusRef}>local cluster</span>
+      </p>
+    </>
+  )
 }

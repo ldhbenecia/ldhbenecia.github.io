@@ -5,9 +5,9 @@ import { Topology } from './Topology'
 export function Hero() {
   return (
     <header className={styles.hero} id="top">
-      <Topology statusId="topology-status" />
+      <Topology />
 
-      <div className={`wrap ${styles.content}`}>
+      <div className={`wrap ${styles.content}`} data-topo-column>
         <h1 className={styles.title}>
           <span className={styles.line}>
             <span style={{ '--i': 0 }}>
@@ -30,10 +30,6 @@ export function Hero() {
         </div>
       </div>
 
-      <p className={styles.status}>
-        <span className={styles.dot} aria-hidden="true" />
-        <span id="topology-status">local cluster</span>
-      </p>
     </header>
   )
 }
