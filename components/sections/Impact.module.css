@@ -3,14 +3,8 @@
 }
 
 .title {
-  display: flex;
-  flex-direction: column;
   font-size: var(--step-head);
-  line-height: 1.02;
-}
-
-.indent {
-  padding-left: calc(2 / 12 * 100%);
+  line-height: 1.1;
 }
 
 .table {
@@ -63,10 +57,6 @@
 }
 
 @media (max-width: 720px) {
-  .indent {
-    padding-left: 2.5ch;
-  }
-
   .table,
   .table tbody,
   .row,

@@ -13,8 +13,7 @@ export function Impact() {
   return (
     <section className={`wrap ${styles.section}`} aria-labelledby="impact-title" id="impact">
       <h2 id="impact-title" className={styles.title} data-reveal>
-        <span>고친 것과</span>
-        <span className={styles.indent}>잰 것</span>
+        고친 것과 잰 것
       </h2>
 
       <table className={styles.table} data-reveal style={{ '--i': 1 } as React.CSSProperties}>
