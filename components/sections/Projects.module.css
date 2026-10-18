@@ -137,9 +137,10 @@
   color: var(--muted);
 }
 
+/* dl 은 dt 가 먼저여야 해서 마크업은 라벨 → 숫자, 화면은 숫자 → 라벨 */
 .facts > div {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 
 /* 글 */

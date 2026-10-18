@@ -67,8 +67,8 @@ function Facts({ p }: { p: Project }) {
     <dl className={styles.facts}>
       {p.facts.map((f, i) => (
         <div key={f.label} data-reveal style={{ '--i': i }}>
-          <dd className={`${styles.factValue} num`}>{f.value}</dd>
           <dt className={styles.factLabel}>{f.label}</dt>
+          <dd className={`${styles.factValue} num`}>{f.value}</dd>
         </div>
       ))}
     </dl>

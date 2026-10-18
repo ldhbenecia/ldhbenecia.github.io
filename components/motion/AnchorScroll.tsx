@@ -15,6 +15,9 @@ export function AnchorScroll() {
       if (!target) return
       e.preventDefault()
       target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' })
+      // 키보드 사용자가 다음 Tab 으로 그 섹션 안을 이어서 읽을 수 있게 포커스도 옮김
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1')
+      target.focus({ preventScroll: true })
       if (location.hash) history.replaceState(null, '', location.pathname + location.search)
     }
     document.addEventListener('click', onClick)
