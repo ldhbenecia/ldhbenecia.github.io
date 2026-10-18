@@ -180,8 +180,8 @@ export const projects: Project[] = [
       {
         src: '/images/orbit_dashboard.jpg',
         alt: 'orbit 대시보드. 종목 타일, 일봉 차트, 규칙별 오늘의 신호와 가상 지갑',
-        width: 1400,
-        height: 1738,
+        width: 840,
+        height: 1043,
         caption: '가상 데이터로 찍은 화면. 거래소 약관상 실제 시세는 로컬에서만 봅니다.',
       },
     ],
