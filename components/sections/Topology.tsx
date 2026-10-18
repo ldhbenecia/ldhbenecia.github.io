@@ -129,7 +129,7 @@ export function Topology({ statusId }: { statusId: string }) {
       }
 
       if (status && now - rateAt > 1000) {
-        status.textContent = `노드 ${bodies.length}개 · 초당 요청 ${Math.round((delivered * 1000) / (now - rateAt))}`
+        status.textContent = `${bodies.length} nodes · ${Math.round((delivered * 1000) / (now - rateAt))} req/s`
         delivered = 0
         rateAt = now
       }
@@ -249,7 +249,7 @@ export function Topology({ statusId }: { statusId: string }) {
     host.addEventListener('pointermove', onMove)
     host.addEventListener('pointerleave', onLeave)
     document.addEventListener('visibilitychange', onVisibility)
-    if (reduced && status) status.textContent = `노드 ${bodies.length}개`
+    if (reduced && status) status.textContent = `${bodies.length} nodes`
 
     return () => {
       stop()

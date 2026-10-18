@@ -6,11 +6,11 @@ import styles from './Nav.module.css'
 import { ThemeToggle } from './ThemeToggle'
 
 const links = [
-  { id: 'impact', label: '성과' },
-  { id: 'work', label: '경력' },
-  { id: 'projects', label: '프로젝트' },
-  { id: 'about', label: '소개' },
-  { id: 'contact', label: '연락' },
+  { id: 'impact', label: 'Impact' },
+  { id: 'work', label: 'Work' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'about', label: 'About' },
+  { id: 'contact', label: 'Contact' },
 ]
 
 export function Nav() {
@@ -55,7 +55,7 @@ export function Nav() {
   }, [open])
 
   return (
-    <nav className={styles.nav} data-scrolled={scrolled} data-open={open} aria-label="주요 메뉴">
+    <nav className={styles.nav} data-scrolled={scrolled} data-open={open} aria-label="Main">
       <a className={styles.wordmark} href="#top" onClick={() => setOpen(false)}>
         {profile.handle}
       </a>
@@ -74,7 +74,7 @@ export function Nav() {
         className={styles.menuButton}
         aria-expanded={open}
         aria-controls="mobile-menu"
-        aria-label={open ? '메뉴 닫기' : '메뉴 열기'}
+        aria-label={open ? 'Close menu' : 'Open menu'}
         onClick={() => setOpen((v) => !v)}
       >
         <span />

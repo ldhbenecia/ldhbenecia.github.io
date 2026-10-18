@@ -59,7 +59,7 @@ export function ThemeToggle() {
     transition.finished.finally(() => root.classList.remove('vt'))
   }
 
-  const label = theme === 'light' ? '다크 모드로 바꾸기' : '라이트 모드로 바꾸기'
+  const label = theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
 
   return (
     <button type="button" className={styles.toggle} onClick={toggle} aria-label={label} title={label} data-theme={theme ?? 'dark'}>
