@@ -1,4 +1,4 @@
-export type Project = {
+type ProjectBase = {
   id: string
   name: string
   years: string
@@ -9,9 +9,13 @@ export type Project = {
   links: { label: string; href: string }[]
   points: { title: string; body: string }[]
   facts?: { label: string; value: string }[]
-  images?: ProjectImage[]
   pipeline?: string[]
 }
+
+// 챕터 구성. 화면 캡처가 있어야 하는 구성은 타입에서 images 를 요구함
+// wide: 큰 캡처 아래 글 · side: 글 옆 작은 캡처 · pair: 캡처 두 장 옆 글 · text: 글만(배포 흐름이 있으면 함께)
+export type Project = ProjectBase &
+  ({ layout: 'wide' | 'side' | 'pair'; images: [ProjectImage, ...ProjectImage[]] } | { layout: 'text'; images?: never })
 
 // framed: 이미지 자체에 맥 창 테두리와 그림자가 들어 있음. 아니면 화면에서 같은 모양의 창을 씌움
 export type ProjectImage = { src: string; alt: string; width: number; height: number; framed?: boolean; caption?: string }
@@ -19,6 +23,7 @@ export type ProjectImage = { src: string; alt: string; width: number; height: nu
 export const projects: Project[] = [
   {
     id: 'mono',
+    layout: 'wide',
     name: 'Mono Mail',
     years: '2024.07 – 2025.06',
     kind: '메일 웹앱',
@@ -55,6 +60,7 @@ export const projects: Project[] = [
   },
   {
     id: 'cairn',
+    layout: 'pair',
     name: 'Cairn',
     years: '2026 –',
     kind: '데스크톱 앱',
@@ -92,6 +98,7 @@ export const projects: Project[] = [
   },
   {
     id: 'morris',
+    layout: 'side',
     name: 'Nine Men’s Morris',
     years: '2024 · 2026',
     kind: '실시간 보드게임',
@@ -128,6 +135,7 @@ export const projects: Project[] = [
   },
   {
     id: 'infra',
+    layout: 'text',
     name: 'Infra Lab',
     years: '2025 –',
     kind: 'GitOps 클러스터',
@@ -160,6 +168,7 @@ export const projects: Project[] = [
   },
   {
     id: 'orbit',
+    layout: 'side',
     name: 'orbit',
     years: '2026 –',
     kind: '퀀트 연습장',
@@ -193,6 +202,7 @@ export const projects: Project[] = [
   },
   {
     id: 'sent',
+    layout: 'text',
     name: 'Sent',
     years: '2025',
     kind: '메모·투두 서버',

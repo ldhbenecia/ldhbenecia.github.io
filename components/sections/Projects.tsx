@@ -2,17 +2,7 @@ import { MetaList } from '@/components/ui/MetaList'
 import { projects, type Project, type ProjectImage } from '@/content/projects'
 import styles from './Projects.module.css'
 
-// 이웃한 챕터가 같은 구성을 쓰지 않도록 프로젝트마다 고정
-const layoutOf: Record<string, 'wide' | 'side' | 'pair' | 'pipeline' | 'text'> = {
-  mono: 'wide',
-  cairn: 'pair',
-  morris: 'side',
-  infra: 'pipeline',
-  orbit: 'side',
-  sent: 'text',
-}
-
-function Shot({ image, priority = false, className }: { image: ProjectImage; priority?: boolean; className?: string }) {
+function Shot({ image, className }: { image: ProjectImage; className?: string }) {
   return (
     <figure className={`${styles.shot} ${className ?? ''}`} data-shutter>
       <div className={image.framed ? styles.framed : styles.window}>
@@ -28,7 +18,7 @@ function Shot({ image, priority = false, className }: { image: ProjectImage; pri
           alt={image.alt}
           width={image.width}
           height={image.height}
-          loading={priority ? 'eager' : 'lazy'}
+          loading="lazy"
           decoding="async"
         />
       </div>
@@ -111,60 +101,58 @@ function Pipeline({ steps }: { steps: string[] }) {
 }
 
 function Chapter({ p }: { p: Project }) {
-  const layout = layoutOf[p.id] ?? 'text'
-  const [first, second] = p.images ?? []
-
   return (
-    <article id={p.id} className={styles.chapter} data-layout={layout}>
+    <article id={p.id} className={styles.chapter}>
       <div className="wrap">
         <Head p={p} />
       </div>
+      <Body p={p} />
+    </article>
+  )
+}
 
-      {layout === 'wide' && first && (
+// 이웃한 챕터가 같은 구성을 쓰지 않도록 구성은 content 에서 프로젝트마다 정함
+function Body({ p }: { p: Project }) {
+  switch (p.layout) {
+    case 'wide':
+      return (
         <>
-          <Shot image={first} className={styles.wideShot} />
+          <Shot image={p.images[0]} className={styles.wideShot} />
           <div className={`wrap ${styles.after}`}>
             <Facts p={p} />
             <Points p={p} />
-            {second && <Shot image={second} className={styles.secondShot} />}
+            {p.images[1] && <Shot image={p.images[1]} className={styles.secondShot} />}
           </div>
         </>
-      )}
-
-      {layout === 'side' && first && (
+      )
+    case 'side':
+      return (
         <div className={`wrap ${styles.side}`}>
           <Points p={p} columns={1} />
-          <Shot image={first} className={styles.sideShot} />
+          <Shot image={p.images[0]} className={styles.sideShot} />
         </div>
-      )}
-
-      {layout === 'pair' && first && (
+      )
+    case 'pair':
+      return (
         <div className={`wrap ${styles.pair}`}>
           <div className={styles.pairShots}>
-            <Shot image={first} />
-            {second && <Shot image={second} className={styles.pairSecond} />}
+            <Shot image={p.images[0]} />
+            {p.images[1] && <Shot image={p.images[1]} className={styles.pairSecond} />}
           </div>
           <div>
             <Facts p={p} />
             <Points p={p} columns={1} />
           </div>
         </div>
-      )}
-
-      {layout === 'pipeline' && (
+      )
+    case 'text':
+      return (
         <div className={`wrap ${styles.after}`}>
           {p.pipeline && <Pipeline steps={p.pipeline} />}
-          <Points p={p} />
+          <Points p={p} columns={p.pipeline ? 2 : 3} />
         </div>
-      )}
-
-      {layout === 'text' && (
-        <div className={`wrap ${styles.after}`}>
-          <Points p={p} columns={3} />
-        </div>
-      )}
-    </article>
-  )
+      )
+  }
 }
 
 export function Projects() {
