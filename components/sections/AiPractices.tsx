@@ -15,6 +15,7 @@ export function AiPractices() {
           <li key={a.title} className={styles.item} data-reveal style={{ '--i': i % 2 }}>
             <h3 className={styles.itemTitle}>{a.title}</h3>
             <p>{a.body}</p>
+            <p className={styles.where}>{a.where}</p>
           </li>
         ))}
       </ul>

@@ -83,7 +83,7 @@ export const projects: Project[] = [
     points: [
       {
         title: 'AI를 규칙과 검증으로 통제하는 팀원처럼',
-        body: 'CLAUDE.md와 AGENTS.md로 Claude Code와 Codex가 같은 규칙을 읽게 하고, 규칙 7종과 ADR·진행 일지를 작업 전에 먼저 읽도록 구성했습니다. PR 리뷰 스킬, Husky·commitlint, CI의 typecheck·lint·test로 사람이 보기 전에 체계가 먼저 거르고, 머지된 PR의 리뷰를 주기적으로 전수 감사해 놓친 지적 8건을 반영했습니다. 커밋의 96%를 퇴근 후와 주말에 하면서 PR 330개 이상을 이어 왔습니다.',
+        body: 'CLAUDE.md와 AGENTS.md로 Claude Code와 Codex가 같은 규칙을 읽게 하고, 규칙 7종과 ADR·진행 일지를 작업 전에 먼저 읽도록 구성했습니다. PR 리뷰 스킬, Husky·commitlint, CI의 typecheck·lint·test로 사람이 보기 전에 체계가 먼저 거르고, 머지된 PR의 리뷰를 주기적으로 전수 감사해 놓친 지적 8건을 반영했습니다. 커밋의 98%를 퇴근 후와 주말에 하면서 PR 330개 이상을 이어 왔습니다.',
       },
       {
         title: '요약 96초 → 28초, 출력 토큰 85% 절감',
