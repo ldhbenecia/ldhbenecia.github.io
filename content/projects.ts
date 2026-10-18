@@ -105,8 +105,7 @@ export const projects: Project[] = [
       { label: '테스트', value: '238' },
     ],
     images: [
-      { src: '/images/nmm_play-2.jpg', alt: '나인멘스모리스 대국 화면. Phase 1 돌 배치 단계, 흑돌과 백돌이 놓인 판', width: 1407, height: 885 },
-      { src: '/images/nmm_play-3.jpg', alt: '나인멘스모리스 대국 진행 화면', width: 1408, height: 883 },
+      { src: '/images/nmm_moving.jpg', alt: '나인멘스모리스 대국 화면. Phase 2 돌 이동 단계, 흑돌과 백돌이 놓인 판', width: 1413, height: 881 },
     ],
     points: [
       {
