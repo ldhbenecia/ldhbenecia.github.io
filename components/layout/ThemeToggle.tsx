@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { prefersReducedMotion } from '@/lib/motion'
 import styles from './ThemeToggle.module.css'
@@ -17,6 +17,7 @@ const syncThemeColor = () => {
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null)
+  const switching = useRef(false)
 
   useEffect(() => {
     setTheme(current())
@@ -36,6 +37,8 @@ export function ThemeToggle() {
   }, [])
 
   const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // 전환 중에 또 누르면 앞 전환이 취소되고 같은 테마로 두 번 바뀌어 결국 한 번만 바뀜
+    if (switching.current) return
     const next: Theme = current() === 'light' ? 'dark' : 'light'
     const apply = () => {
       document.documentElement.dataset.theme = next
@@ -59,24 +62,30 @@ export function ThemeToggle() {
     const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
     const root = document.documentElement
     root.classList.add('vt')
+    switching.current = true
     const transition = document.startViewTransition(apply)
-    transition.ready.then(() => {
-      root.animate(
-        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
-        {
-          duration: 650,
-          easing: getComputedStyle(root).getPropertyValue('--ease-in-out').trim(),
-          pseudoElement: '::view-transition-new(root)',
-        },
-      )
+    transition.ready
+      .then(() => {
+        root.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          {
+            duration: 650,
+            easing: getComputedStyle(root).getPropertyValue('--ease-in-out').trim(),
+            pseudoElement: '::view-transition-new(root)',
+          },
+        )
+      })
+      .catch(() => {})
+    transition.finished.finally(() => {
+      root.classList.remove('vt')
+      switching.current = false
     })
-    transition.finished.finally(() => root.classList.remove('vt'))
   }
 
   const label = theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
 
   return (
-    <button type="button" className={styles.toggle} onClick={toggle} aria-label={label} title={label} data-theme={theme ?? 'dark'}>
+    <button type="button" className={styles.toggle} onClick={toggle} aria-label={label} title={label}>
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
         <mask id="theme-moon">
           <rect width="24" height="24" fill="#fff" />

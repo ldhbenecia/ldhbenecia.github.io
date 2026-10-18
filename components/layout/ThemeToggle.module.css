@@ -22,7 +22,8 @@
   }
 }
 
-/* 다크에서는 달(원에 그림자가 파고듦), 라이트에서는 해(빛살이 돌며 나옴) */
+/* 다크에서는 달(원에 그림자가 파고듦), 라이트에서는 해(빛살이 돌며 나옴).
+   React 상태가 아니라 페인트 전에 정해지는 html 의 data-theme 을 봐서 로드 때 변형이 재생되지 않음 */
 .core,
 .cut,
 .rays {
@@ -31,16 +32,16 @@
   transition: transform 500ms var(--ease-out), opacity 300ms ease;
 }
 
-.toggle[data-theme='dark'] .core {
+:global(:root:not([data-theme='light'])) .core {
   transform: scale(1.5);
 }
 
-.toggle[data-theme='dark'] .rays {
+:global(:root:not([data-theme='light'])) .rays {
   opacity: 0;
   transform: rotate(-60deg) scale(0.6);
 }
 
-.toggle[data-theme='light'] .cut {
+:global(:root[data-theme='light']) .cut {
   transform: translate(8px, -8px);
 }
 
