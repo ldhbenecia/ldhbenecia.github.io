@@ -18,28 +18,37 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
+  // 화면 가운데보다 위로 올라간 마지막 섹션이 현재 위치. 페이지 끝에 닿으면 마지막 링크
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > window.innerHeight * 0.6)
-      // 연락처는 짧아서 가운데 띠에 닿기 전에 페이지가 끝남
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) setActive('contact')
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-
-    // 화면 가운데 띠에 걸친 섹션을 현재 위치로 봄
     const sections = links.map((l) => document.getElementById(l.id)).filter((el): el is HTMLElement => !!el)
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) if (e.isIntersecting) setActive(e.target.id)
-      },
-      { rootMargin: '-45% 0px -50% 0px' },
-    )
-    sections.forEach((s) => io.observe(s))
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      io.disconnect()
+    let frame = 0
+    const update = () => {
+      frame = 0
+      setScrolled(window.scrollY > window.innerHeight * 0.6)
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4
+      let current: string | null = atBottom ? links[links.length - 1].id : null
+      if (!atBottom) for (const s of sections) if (s.getBoundingClientRect().top <= window.innerHeight / 2) current = s.id
+      setActive(current)
     }
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+
+  // 메뉴가 열린 채 넓은 화면이 되면 닫음. 안 닫으면 시트는 숨어도 스크롤 잠금이 남음
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 721px)')
+    const onChange = () => mq.matches && setOpen(false)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
   }, [])
 
   // 메뉴가 열린 동안 뒤 페이지가 스크롤되지 않게 하고 Esc 로 닫음

@@ -190,9 +190,3 @@
     display: block;
   }
 }
-
-@media (min-width: 721px) {
-  .sheet {
-    display: none !important;
-  }
-}
