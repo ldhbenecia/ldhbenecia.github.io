@@ -1,10 +1,6 @@
 export const profile = {
   handle: 'ldhbenecia',
   nameKo: '임동혁',
-  email: 'jh07050@gmail.com',
-  github: 'https://github.com/ldhbenecia',
-  blog: 'https://velog.io/@ldhbenecia',
-  linkedin: 'https://linkedin.com/in/ldhbenecia',
   links: [
     { label: 'GitHub', text: 'github.com/ldhbenecia', href: 'https://github.com/ldhbenecia' },
     { label: 'Blog', text: 'velog.io/@ldhbenecia', href: 'https://velog.io/@ldhbenecia' },
