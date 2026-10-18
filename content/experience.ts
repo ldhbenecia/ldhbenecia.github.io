@@ -15,7 +15,7 @@ export const jobs: Job[] = [
     company: '넛지헬스케어',
     role: 'Backend Engineer',
     period: '2026.02 – 현재',
-    products: '캐시워크 MAU 550만 · 캐시워크 챌린지 · 캐시워크 for 비즈니스',
+    products: '캐시워크 챌린지 · 캐시워크 for 비즈니스',
     stack: 'TypeScript, NestJS, Prisma, MySQL, Valkey, AWS RDS, Elastic Beanstalk, SQS, OpenTelemetry',
     cases: [
       {

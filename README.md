@@ -1,6 +1,6 @@
 # ldhbenecia.github.io
 
-Portfolio of Donghyeok Lim — backend engineer moving into SRE / DevOps.
+Portfolio of Donghyeok Lim, backend engineer.
 
 🔗 [ldhbenecia.github.io](https://ldhbenecia.github.io)
 
