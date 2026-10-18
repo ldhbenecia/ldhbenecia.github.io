@@ -22,7 +22,9 @@ export function Contact() {
           <a className={styles.greetLink} href={`mailto:${profile.email}`}>
             <span>안녕하세요</span>
             <span className={styles.arrow} aria-hidden="true">
-              →
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
             </span>
             <span className="visually-hidden">메일 보내기</span>
           </a>

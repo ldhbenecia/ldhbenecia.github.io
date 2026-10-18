@@ -47,9 +47,13 @@
   border-radius: 50%;
   background: var(--accent);
   color: var(--accent-ink);
-  font-size: 0.9em;
   line-height: 1;
   transition: transform var(--t-hover) var(--ease-out);
+}
+
+.arrow svg {
+  width: 48%;
+  height: 48%;
 }
 
 .greetLink:active .arrow {
@@ -83,6 +87,5 @@
     height: 56px;
     background: var(--accent-ink);
     color: var(--accent);
-    font-size: 1.5rem;
   }
 }
