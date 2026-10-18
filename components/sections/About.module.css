@@ -68,6 +68,10 @@
   font-size: var(--step-body);
 }
 
+.tools > div {
+  display: contents;
+}
+
 .tools dt {
   color: var(--muted);
 }
