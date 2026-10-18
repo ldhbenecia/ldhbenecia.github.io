@@ -7,6 +7,7 @@ import { ThemeToggle } from './ThemeToggle'
 
 const links = [
   { id: 'impact', label: 'Impact' },
+  { id: 'ai', label: 'AI' },
   { id: 'work', label: 'Work' },
   { id: 'projects', label: 'Projects' },
   { id: 'about', label: 'About' },

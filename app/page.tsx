@@ -1,6 +1,7 @@
 import { Footer } from '@/components/layout/Footer'
 import { Nav } from '@/components/layout/Nav'
 import { About } from '@/components/sections/About'
+import { AiPractices } from '@/components/sections/AiPractices'
 import { Contact } from '@/components/sections/Contact'
 import { Experience } from '@/components/sections/Experience'
 import { Hero } from '@/components/sections/Hero'
@@ -18,6 +19,7 @@ export default function HomePage() {
       <main>
         <QueryRace />
         <Impact />
+        <AiPractices />
         <Experience />
         <section id="projects" aria-label="프로젝트">
           <ProjectIndex />
