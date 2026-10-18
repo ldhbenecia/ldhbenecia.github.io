@@ -3,7 +3,7 @@ export const impactTitle = '숫자로 본 개선'
 export type ImpactRow = { year: string; where: string; what: string; before: string; after: string }
 
 export const impact: ImpactRow[] = [
-  { year: '2026', where: '캐시워크 챌린지', what: '채널 구독자 조회 크론', before: '18s', after: '53ms' },
+  { year: '2026', where: '캐시워크 챌린지', what: '캐시워크 채널 구독자 조회 크론', before: '18s', after: '53ms' },
   { year: '2026', where: '캐시워크 챌린지', what: '인증샷 목록·카운트 쿼리', before: '10.8s', after: '7.5ms' },
   { year: '2026', where: '캐시워크 챌린지', what: '하루 error 로그', before: '75,000', after: '600' },
   { year: '2026', where: '캐시워크 for 비즈니스', what: '뮤테이션 테스트 검출률', before: '59.7%', after: '76.9%' },
@@ -31,5 +31,5 @@ export const race = {
   done: '끝남',
   afterFirst: '새 쿼리는 이미 끝남',
   story:
-    '캐시워크 챌린지 채널 구독자 53만 명을 뽑는 주 1회 크론이 3,889만 행을 전부 읽고 있었습니다. ORDER BY … LIMIT 때문에 옵티마이저가 PK 스캔을 골랐고, 찾는 행은 테이블 끝에 몰려 있었습니다. 통계 갱신, 히스토그램, LIMIT 조정을 하나씩 검증해 기각한 뒤 보조 인덱스를 강제했습니다.',
+    '캐시워크 챌린지의 채널 중 "캐시워크" 채널의 구독자 53만 명을 뽑는 주 1회 크론이 3,889만 행을 전부 읽고 있었습니다. ORDER BY … LIMIT 때문에 옵티마이저가 PK 스캔을 골랐고, 찾는 행은 테이블 끝에 몰려 있었습니다. 통계 갱신, 히스토그램, LIMIT 조정을 하나씩 검증해 기각한 뒤 보조 인덱스를 강제했습니다.',
 }
