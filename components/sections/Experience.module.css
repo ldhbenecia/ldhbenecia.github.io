@@ -109,7 +109,7 @@
   display: grid;
   gap: 10px;
   color: var(--muted);
-  font-size: 1.0625rem;
+  font-size: var(--step-body);
 }
 
 .did li {

@@ -37,15 +37,17 @@
   --font-display: var(--font-geist), 'Pretendard Variable', Pretendard, system-ui, sans-serif;
   --font-text: var(--font-geist), 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
-  --step-small: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
-  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
-  --step-head: clamp(2.25rem, 1.2rem + 4.4vw, 5rem);
-  --step-display: clamp(2.75rem, 1rem + 5.2vw, 6.25rem);
+  --step-small: 0.8125rem;
+  --step-body: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+  --step-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem);
+  --step-head: clamp(1.875rem, 1.1rem + 3vw, 3.5rem);
+  --step-display: clamp(2.25rem, 1rem + 4vw, 4.75rem);
 
   --margin: clamp(16px, 2.2vw, 32px);
-  --gap-section: clamp(120px, 14vw, 220px);
-  --max: 1440px;
+  --gap-section: clamp(96px, 10vw, 160px);
+  --max: 1200px;
+  /* 화면 끝까지 닿는 막대(내비·푸터)의 안쪽 여백. 내용 열과 같은 세로선에 맞춤 */
+  --edge: max(var(--margin), calc((100vw - var(--max)) / 2 + var(--margin)));
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
@@ -93,6 +95,6 @@
 
 @media (max-width: 640px) {
   :root {
-    --gap-section: 96px;
+    --gap-section: 80px;
   }
 }

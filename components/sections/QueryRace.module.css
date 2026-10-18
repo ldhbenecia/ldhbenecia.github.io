@@ -56,14 +56,14 @@
 }
 
 .caption {
-  font-size: 1rem;
+  font-size: var(--step-small);
   color: var(--muted);
   margin-top: 16px;
   min-height: 1.6em;
 }
 
 .box {
-  --fs: clamp(4.5rem, 11vw, 10rem);
+  --fs: clamp(3.5rem, 8vw, 7.5rem);
 }
 
 /* 막대 길이는 경과 시간 / 원래 걸리던 시간 */
@@ -117,6 +117,6 @@
   }
 
   .box {
-    --fs: 22vw;
+    --fs: 18vw;
   }
 }
