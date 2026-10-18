@@ -27,13 +27,12 @@ export const projects: Project[] = [
     name: 'Mono Mail',
     years: '2024.07 – 2025.06',
     kind: '메일 웹앱',
-    line: '업무용 메일 경험을 다시 만든 웹앱. 2025 Y Combinator Spring·Summer 배치 최종 인터뷰까지 갔고, 기업가치 50억 원으로 약 5억 원을 실제로 투자받았습니다. AI 코딩 도구 없이, 회사와 학업을 병행하며 1년 동안 서버를 만들었습니다.',
+    line: '업무용 메일 경험을 다시 만든 웹앱. 사용자가 2,000명을 넘었고, 2025 Y Combinator Spring·Summer 배치 최종 인터뷰까지 갔으며, 기업가치 50억 원으로 약 5억 원을 실제로 투자받았습니다. AI 코딩 도구 없이 회사와 학업을 병행하며 1년 동안 서버를 만들었고, 지금은 서비스를 종료했습니다.',
     role: '서버 개발 · FE 1 / BE 2',
     stack: 'Java, Spring Boot, JPA, MySQL, Firestore, Flyway, GCP Cloud Run, Docker',
-    links: [{ label: 'monomail.co', href: 'https://monomail.co' }],
+    links: [{ label: 'monomail.co 소개 페이지', href: 'https://monomail.co' }],
     facts: [
-      { label: '미국 사용자', value: '400+' },
-      { label: '연동 계정', value: '500+' },
+      { label: '사용자', value: '2,000+' },
       { label: '투자 유치', value: '5억' },
     ],
     images: [
