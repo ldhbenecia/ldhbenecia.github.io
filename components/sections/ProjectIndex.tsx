@@ -5,8 +5,9 @@ import { projects } from '@/content/projects'
 import styles from './ProjectIndex.module.css'
 
 export function ProjectIndex() {
-  // 아무것도 가리키지 않을 때는 첫 프로젝트를 보여 줌
-  const [hovered, setHovered] = useState(projects[0].id)
+  // 목록을 가리키지 않을 때는 첫 프로젝트를 보여 줌
+  const first = projects[0].id
+  const [hovered, setHovered] = useState(first)
 
   return (
     <nav className={`wrap ${styles.section}`} aria-label="프로젝트 목록">
@@ -14,7 +15,7 @@ export function ProjectIndex() {
         Projects
       </h2>
       <div className={styles.layout}>
-        <ol className={styles.list}>
+        <ol className={styles.list} onPointerLeave={() => setHovered(first)} onBlur={() => setHovered(first)}>
           {projects.map((p, i) => (
             <li key={p.id} data-reveal style={{ '--i': i }}>
               <a
