@@ -8,6 +8,7 @@ import { Impact } from '@/components/sections/Impact'
 import { ProjectIndex } from '@/components/sections/ProjectIndex'
 import { Projects } from '@/components/sections/Projects'
 import { QueryRace } from '@/components/sections/QueryRace'
+import { Lightbox } from '@/components/ui/Lightbox'
 
 export default function HomePage() {
   return (
@@ -26,6 +27,7 @@ export default function HomePage() {
         <Contact />
       </main>
       <Footer />
+      <Lightbox />
     </>
   )
 }
