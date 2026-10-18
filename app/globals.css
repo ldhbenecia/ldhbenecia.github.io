@@ -11,6 +11,8 @@ html {
   scroll-behavior: smooth;
   color-scheme: dark;
   interpolate-size: allow-keywords;
+  /* 커서 미리보기처럼 고정 위치 요소는 body 의 clip 을 벗어나므로 여기서도 막음 */
+  overflow-x: clip;
 }
 
 /* 테마 전환. View Transition 이 있으면 원형으로 드러나고(스크립트가 clip-path 를 애니메이션),
