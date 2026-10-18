@@ -97,28 +97,26 @@
   color: var(--bg);
 }
 
+/* 폰에서도 책등 모양을 유지하고 옆으로 넘김 */
 @media (max-width: 720px) {
   .shelf {
-    flex-wrap: wrap;
-    gap: 10px;
-    overflow: visible;
+    margin-inline: calc(-1 * var(--margin));
+    padding-inline: var(--margin);
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--margin);
   }
 
   .shelf > li {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
   }
 
   .spine {
-    writing-mode: horizontal-tb;
-    height: auto;
-    min-width: 0;
-    padding: 8px 0 8px 0;
-    align-items: center;
-    gap: 0;
+    height: 300px;
+    min-width: 42px;
   }
 
-  .spineTag {
-    padding: 2px 8px;
-    margin-right: 8px;
+  .spineName {
+    font-size: 1rem;
   }
 }

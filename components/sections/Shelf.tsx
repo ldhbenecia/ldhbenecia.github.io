@@ -8,7 +8,7 @@ export function Shelf() {
         <h2 id="shelf-title" className={styles.title}>
           만든 것 전부
         </h2>
-        <p className={styles.note}>공개 저장소 {shelf.length}개. 책등을 누르면 GitHub으로 갑니다.</p>
+        <p className={styles.note}>공개 저장소 {shelf.length}개. 옆으로 넘기고, 책등을 누르면 GitHub으로 갑니다.</p>
       </div>
       <ul className={styles.shelf} data-reveal style={{ '--i': 1 } as React.CSSProperties}>
         {shelf.map((s) => (
