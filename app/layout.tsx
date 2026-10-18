@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist } from 'next/font/google'
+import { AnchorScroll } from '@/components/motion/AnchorScroll'
 import { MotionObserver } from '@/components/motion/MotionObserver'
 import { profile } from '@/content/profile'
 import './globals.css'
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         <MotionObserver />
+        <AnchorScroll />
       </body>
     </html>
   )

@@ -8,7 +8,6 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
   color-scheme: dark;
   interpolate-size: allow-keywords;
   /* 커서 미리보기처럼 고정 위치 요소는 body 의 clip 을 벗어나므로 여기서도 막음 */
@@ -33,10 +32,9 @@ html {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+/* 고정 내비 아래로 섹션 머리가 가려지지 않게 */
+[id] {
+  scroll-margin-top: 72px;
 }
 
 body {
