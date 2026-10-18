@@ -14,22 +14,30 @@
   font-size: var(--step-body);
 }
 
-.row:nth-of-type(odd) {
-  background: var(--surface);
+/* 연도 묶음 사이 간격. 테두리로 주면 collapse 모델에서 첫 칸 높이가 늘어 빈 행 하나를 끼움 */
+.group + .group::before {
+  content: '';
+  display: table-row;
+  height: 28px;
 }
 
-.row td {
+/* 줄무늬. 넓은 화면은 칸에(연도 칸은 비움), 폰은 행 전체에 */
+@media (min-width: 721px) {
+  .row:nth-child(odd) td {
+    background: var(--surface);
+  }
+}
+
+.row td,
+.year {
   padding: 14px 16px;
   vertical-align: baseline;
 }
 
-.spacer td {
-  height: 28px;
-  padding: 0;
-}
-
 .year {
   width: calc(2 / 12 * 100%);
+  vertical-align: top;
+  text-align: left;
   font-weight: 600;
 }
 
@@ -58,9 +66,8 @@
 
 @media (max-width: 720px) {
   .table,
-  .table tbody,
-  .row,
-  .row td {
+  .group,
+  .year {
     display: block;
   }
 
@@ -68,31 +75,35 @@
     margin-top: 40px;
   }
 
+  .group + .group::before {
+    display: block;
+  }
+
+  .year {
+    width: auto;
+    padding: 0 12px 10px;
+    font-size: var(--step-lead);
+  }
+
   .row {
     display: grid;
     grid-template-columns: 1fr auto;
-    padding: 14px 12px;
     column-gap: 16px;
   }
 
+  .row:nth-child(odd) {
+    background: var(--surface);
+  }
+
   .row td {
-    padding: 0;
     width: auto;
+    padding: 0 12px;
   }
 
-  .yearShown {
-    grid-column: 1 / -1;
-    font-size: 1.125rem;
-    margin-bottom: 8px;
-  }
-
-  .year:not(.yearShown) {
-    display: contents;
-  }
-
-  .what {
+  .row .what {
     grid-column: 1;
     order: 1;
+    padding-top: 14px;
   }
 
   .delta {
@@ -102,18 +113,10 @@
     order: 2;
   }
 
-  .where {
+  .row .where {
     grid-column: 1;
     order: 3;
-    font-size: 0.875rem;
-  }
-
-  .spacer {
-    display: block;
-    height: 24px;
-  }
-
-  .spacer td {
-    display: none;
+    padding-bottom: 14px;
+    font-size: var(--step-small);
   }
 }
