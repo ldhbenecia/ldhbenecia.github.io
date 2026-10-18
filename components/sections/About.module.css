@@ -76,6 +76,34 @@
   color: var(--muted);
 }
 
+.ai {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px 48px;
+}
+
+.ai li {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.aiTitle {
+  font-size: var(--step-body);
+}
+
+.ai p {
+  color: var(--muted);
+  font-size: var(--step-small);
+  line-height: 1.7;
+}
+
+.aiResult {
+  margin-top: 32px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
 @media (max-width: 960px) {
   .section {
     gap: 72px;
@@ -98,6 +126,11 @@
 
   .records {
     grid-template-columns: 1fr;
+  }
+
+  .ai {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 
   .tools {

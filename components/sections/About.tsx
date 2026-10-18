@@ -41,6 +41,25 @@ export function About() {
 
       <div className={styles.row}>
         <p className={styles.word} data-reveal>
+          {about.aiLabel}
+        </p>
+        <div>
+          <ul className={styles.ai}>
+            {about.ai.map((a, i) => (
+              <li key={a.title} data-reveal style={{ '--i': i % 2 }}>
+                <h3 className={styles.aiTitle}>{a.title}</h3>
+                <p>{a.body}</p>
+              </li>
+            ))}
+          </ul>
+          <p className={styles.aiResult} data-reveal>
+            {about.aiResult}
+          </p>
+        </div>
+      </div>
+
+      <div className={styles.row}>
+        <p className={styles.word} data-reveal>
           {about.toolsLabel}
         </p>
         <dl className={styles.tools} data-reveal style={{ '--i': 1 }}>
