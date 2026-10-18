@@ -1,4 +1,4 @@
-import { impact, type ImpactRow } from '@/content/impact'
+import { impact, impactTitle, type ImpactRow } from '@/content/impact'
 import styles from './Impact.module.css'
 
 function groupByYear(rows: ImpactRow[]) {
@@ -15,7 +15,7 @@ export function Impact() {
   return (
     <section className={`wrap ${styles.section}`} aria-labelledby="impact-title" id="impact">
       <h2 id="impact-title" className={styles.title} data-reveal>
-        숫자로 본 개선
+        {impactTitle}
       </h2>
 
       <table className={styles.table} data-reveal style={{ '--i': 1 }}>

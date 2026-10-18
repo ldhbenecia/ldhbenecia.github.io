@@ -20,7 +20,7 @@ export function About() {
 
       <div className={styles.row}>
         <p className={styles.word} data-reveal>
-          이력
+          {about.recordsLabel}
         </p>
         <div className={styles.records}>
           {about.records.map((r, i) => (
@@ -41,7 +41,7 @@ export function About() {
 
       <div className={styles.row}>
         <p className={styles.word} data-reveal>
-          도구
+          {about.toolsLabel}
         </p>
         <dl className={styles.tools} data-reveal style={{ '--i': 1 }}>
           {about.tools.map((t) => (

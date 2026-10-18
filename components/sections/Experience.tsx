@@ -1,5 +1,5 @@
 import { MetaList } from '@/components/ui/MetaList'
-import { jobs } from '@/content/experience'
+import { caseDetailsLabel, jobs } from '@/content/experience'
 import styles from './Experience.module.css'
 
 export function Experience() {
@@ -30,7 +30,7 @@ export function Experience() {
                 <p className={styles.result}>{c.result}</p>
                 <details className={styles.details}>
                   <summary className={styles.summary}>
-                    어떻게 했나
+                    {caseDetailsLabel}
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="m6 9 6 6 6-6" />
                     </svg>

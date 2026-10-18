@@ -1,3 +1,5 @@
+export const caseDetailsLabel = '어떻게 했나'
+
 export type Case = { title: string; problem: string; did: string[]; result: string }
 
 export type Job = {

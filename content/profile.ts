@@ -18,6 +18,8 @@ export const about = {
     { label: '담당', value: '캐시워크 챌린지, 캐시워크 for 비즈니스' },
     { label: '기록', value: 'velog, ADR, 진행 일지' },
   ],
+  recordsLabel: '이력',
+  toolsLabel: '도구',
   records: [
     {
       title: '학력·교육',
