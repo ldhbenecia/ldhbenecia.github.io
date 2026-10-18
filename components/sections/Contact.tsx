@@ -9,7 +9,7 @@ export function Contact() {
       </h2>
       <ul className={styles.list}>
         {profile.links.map((l, i) => (
-          <li key={l.href} data-reveal style={{ '--i': i + 1 } as React.CSSProperties}>
+          <li key={l.href} data-reveal style={{ '--i': i + 1 }}>
             <a className={styles.link} href={l.href} target="_blank" rel="noreferrer">
               <span className={styles.label}>{l.label}</span>
               <span className={styles.text}>{l.text}</span>

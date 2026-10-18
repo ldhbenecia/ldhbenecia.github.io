@@ -16,7 +16,7 @@ export function ProjectIndex() {
       <div className={styles.layout}>
         <ol className={styles.list}>
           {projects.map((p, i) => (
-            <li key={p.id} data-reveal style={{ '--i': i } as React.CSSProperties}>
+            <li key={p.id} data-reveal style={{ '--i': i }}>
               <a
                 className={styles.item}
                 href={`#${p.id}`}

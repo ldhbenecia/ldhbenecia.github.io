@@ -1,3 +1,4 @@
+import { MetaList } from '@/components/ui/MetaList'
 import { projects, type Project, type ProjectImage } from '@/content/projects'
 import styles from './Projects.module.css'
 
@@ -42,33 +43,30 @@ function Head({ p }: { p: Project }) {
       <h2 className={styles.name} data-reveal>
         {p.name}
       </h2>
-      <p className={styles.line} data-reveal style={{ '--i': 1 } as React.CSSProperties}>
+      <p className={styles.line} data-reveal style={{ '--i': 1 }}>
         {p.line}
       </p>
-      <dl className={styles.meta} data-reveal style={{ '--i': 2 } as React.CSSProperties}>
-        <div>
-          <dt>역할</dt>
-          <dd>{p.role}</dd>
-        </div>
-        <div>
-          <dt>기간</dt>
-          <dd className="num">{p.years}</dd>
-        </div>
-        <div className={styles.metaStack}>
-          <dt>기술</dt>
-          <dd>{p.stack}</dd>
-        </div>
-        <div>
-          <dt>링크</dt>
-          <dd className={styles.links}>
-            {p.links.map((l) => (
-              <a key={l.href} className="link" href={l.href} target="_blank" rel="noreferrer">
-                {l.label}
-              </a>
-            ))}
-          </dd>
-        </div>
-      </dl>
+      <MetaList
+        className={styles.meta}
+        i={2}
+        items={[
+          { label: '역할', value: p.role },
+          { label: '기간', value: p.years, num: true },
+          { label: '기술', value: p.stack, wide: true },
+          {
+            label: '링크',
+            value: (
+              <span className={styles.links}>
+                {p.links.map((l) => (
+                  <a key={l.href} className="link" href={l.href} target="_blank" rel="noreferrer">
+                    {l.label}
+                  </a>
+                ))}
+              </span>
+            ),
+          },
+        ]}
+      />
     </header>
   )
 }
@@ -78,7 +76,7 @@ function Facts({ p }: { p: Project }) {
   return (
     <dl className={styles.facts}>
       {p.facts.map((f, i) => (
-        <div key={f.label} data-reveal style={{ '--i': i } as React.CSSProperties}>
+        <div key={f.label} data-reveal style={{ '--i': i }}>
           <dd className={`${styles.factValue} num`}>{f.value}</dd>
           <dt className={styles.factLabel}>{f.label}</dt>
         </div>
@@ -91,7 +89,7 @@ function Points({ p, columns = 2 }: { p: Project; columns?: 1 | 2 | 3 }) {
   return (
     <div className={styles.points} data-cols={columns}>
       {p.points.map((pt, i) => (
-        <section key={pt.title} className={styles.point} data-reveal style={{ '--i': i % columns } as React.CSSProperties}>
+        <section key={pt.title} className={styles.point} data-reveal style={{ '--i': i % columns }}>
           <h3 className={styles.pointTitle}>{pt.title}</h3>
           <p>{pt.body}</p>
         </section>
@@ -104,7 +102,7 @@ function Pipeline({ steps }: { steps: string[] }) {
   return (
     <ol className={styles.pipeline} aria-label="배포 흐름">
       {steps.map((s, i) => (
-        <li key={s} className={styles.step} data-reveal style={{ '--i': i } as React.CSSProperties}>
+        <li key={s} className={styles.step} data-reveal style={{ '--i': i }}>
           {s}
         </li>
       ))}

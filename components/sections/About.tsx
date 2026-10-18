@@ -13,7 +13,7 @@ export function About() {
             </div>
           ))}
         </dl>
-        <p className={styles.paragraph} data-reveal style={{ '--i': 1 } as React.CSSProperties}>
+        <p className={styles.paragraph} data-reveal style={{ '--i': 1 }}>
           {about.paragraph}
         </p>
       </div>
@@ -24,7 +24,7 @@ export function About() {
         </p>
         <div className={styles.records}>
           {about.records.map((r, i) => (
-            <div key={r.title} data-reveal style={{ '--i': i + 1 } as React.CSSProperties}>
+            <div key={r.title} data-reveal style={{ '--i': i + 1 }}>
               <h2 className={styles.recordTitle}>{r.title}</h2>
               <ul className={styles.recordList}>
                 {r.items.map((it) => (
@@ -43,7 +43,7 @@ export function About() {
         <p className={styles.word} data-reveal>
           도구
         </p>
-        <dl className={styles.tools} data-reveal style={{ '--i': 1 } as React.CSSProperties}>
+        <dl className={styles.tools} data-reveal style={{ '--i': 1 }}>
           {about.tools.map((t) => (
             <div key={t.label}>
               <dt>{t.label}</dt>

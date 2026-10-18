@@ -16,7 +16,7 @@ export function Impact() {
         숫자로 본 개선
       </h2>
 
-      <table className={styles.table} data-reveal style={{ '--i': 1 } as React.CSSProperties}>
+      <table className={styles.table} data-reveal style={{ '--i': 1 }}>
         <caption className="visually-hidden">개선 전후 실측값</caption>
         <thead className="visually-hidden">
           <tr>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { topoEdges, topoNodes, type TopoNode } from '@/content/topology'
+import { prefersReducedMotion } from '@/lib/motion'
 import styles from './Topology.module.css'
 
 // 색은 테마 토큰에서 읽음. 테마가 바뀌면 다시 읽음
@@ -37,7 +38,7 @@ export function Topology({ statusId }: { statusId: string }) {
     if (!canvas || !ctx) return
     const host = canvas.parentElement as HTMLElement
     const status = document.getElementById(statusId)
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const reduced = prefersReducedMotion()
     // canvas 의 font 에는 CSS 변수를 쓸 수 없어 계산된 이름을 넣음
     const family = getComputedStyle(document.documentElement).getPropertyValue('--font-geist').trim() || 'system-ui'
     const labelFont = `500 12px ${family}, system-ui, sans-serif`

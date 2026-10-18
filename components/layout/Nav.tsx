@@ -84,7 +84,7 @@ export function Nav() {
       <div id="mobile-menu" className={styles.sheet} hidden={!open}>
         <ul>
           {links.map((l, i) => (
-            <li key={l.id} style={{ '--i': i } as React.CSSProperties}>
+            <li key={l.id} style={{ '--i': i }}>
               <a
                 href={`#${l.id}`}
                 className={styles.sheetLink}
@@ -96,7 +96,7 @@ export function Nav() {
             </li>
           ))}
         </ul>
-        <p className={styles.sheetMail} style={{ '--i': links.length } as React.CSSProperties}>
+        <p className={styles.sheetMail} style={{ '--i': links.length }}>
           {profile.links.map((l) => (
             <a key={l.href} className="link" href={l.href} target="_blank" rel="noreferrer">
               {l.label}

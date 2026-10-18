@@ -1,3 +1,4 @@
+import { MetaList } from '@/components/ui/MetaList'
 import { jobs } from '@/content/experience'
 import styles from './Experience.module.css'
 
@@ -9,29 +10,21 @@ export function Experience() {
           <h2 className={styles.company} data-reveal>
             {job.company}
           </h2>
-          <dl className={styles.meta} data-reveal style={{ '--i': 1 } as React.CSSProperties}>
-            <div>
-              <dt>역할</dt>
-              <dd>{job.role}</dd>
-            </div>
-            <div>
-              <dt>기간</dt>
-              <dd className="num">{job.period}</dd>
-            </div>
-            <div>
-              <dt>제품</dt>
-              <dd>{job.products}</dd>
-            </div>
-            <div>
-              <dt>기술</dt>
-              <dd>{job.stack}</dd>
-            </div>
-          </dl>
+          <MetaList
+            className={styles.meta}
+            i={1}
+            items={[
+              { label: '역할', value: job.role },
+              { label: '기간', value: job.period, num: true },
+              { label: '제품', value: job.products },
+              { label: '기술', value: job.stack },
+            ]}
+          />
           {job.note && <p className={styles.note}>{job.note}</p>}
 
           <div className={styles.cases}>
             {job.cases.map((c, i) => (
-              <section key={c.title} className={styles.case} data-reveal style={{ '--i': i % 2 } as React.CSSProperties}>
+              <section key={c.title} className={styles.case} data-reveal style={{ '--i': i % 2 }}>
                 <h3 className={styles.caseTitle}>{c.title}</h3>
                 <p className={styles.problem}>{c.problem}</p>
                 <p className={styles.result}>{c.result}</p>

@@ -13,16 +13,8 @@
 }
 
 .meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr 2fr 3fr;
-  gap: 24px;
+  --cols: 1fr 1fr 2fr 3fr;
   margin-top: 40px;
-  font-size: var(--step-small);
-}
-
-.meta dt {
-  color: var(--muted);
-  margin-bottom: 4px;
 }
 
 .note {
@@ -126,10 +118,6 @@
 }
 
 @media (max-width: 960px) {
-  .meta {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .cases {
     grid-template-columns: 1fr;
     gap: 64px;

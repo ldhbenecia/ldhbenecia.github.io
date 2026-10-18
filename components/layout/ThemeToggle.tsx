@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
+import { prefersReducedMotion } from '@/lib/motion'
 import styles from './ThemeToggle.module.css'
 
 type Theme = 'light' | 'dark'
@@ -36,7 +37,7 @@ export function ThemeToggle() {
       flushSync(() => setTheme(next))
     }
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const reduced = prefersReducedMotion()
     if (!document.startViewTransition || reduced) {
       apply()
       return

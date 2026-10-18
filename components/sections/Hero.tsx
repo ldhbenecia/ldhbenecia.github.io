@@ -10,12 +10,12 @@ export function Hero() {
       <div className={`wrap ${styles.content}`}>
         <h1 className={styles.title}>
           <span className={styles.line}>
-            <span style={{ '--i': 0 } as React.CSSProperties}>
+            <span style={{ '--i': 0 }}>
               안녕하세요,
             </span>
           </span>
           <span className={styles.line}>
-            <span style={{ '--i': 1 } as React.CSSProperties}>
+            <span style={{ '--i': 1 }}>
               {profile.nameKo}입니다.
             </span>
           </span>
