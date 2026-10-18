@@ -1,7 +1,7 @@
 export type ImpactRow = { year: string; where: string; what: string; before: string; after: string }
 
 export const impact: ImpactRow[] = [
-  { year: '2026', where: '캐시워크', what: '채널 구독자 조회 크론', before: '18s', after: '53ms' },
+  { year: '2026', where: '캐시워크 챌린지', what: '채널 구독자 조회 크론', before: '18s', after: '53ms' },
   { year: '2026', where: '캐시워크 챌린지', what: '인증샷 목록·카운트 쿼리', before: '10.8s', after: '7.5ms' },
   { year: '2026', where: '캐시워크 챌린지', what: '하루 error 로그', before: '75,000', after: '600' },
   { year: '2026', where: '캐시워크 for 비즈니스', what: '뮤테이션 테스트 검출률', before: '59.7%', after: '76.9%' },
