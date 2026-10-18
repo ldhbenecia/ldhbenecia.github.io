@@ -1,91 +1,70 @@
 .section {
-  margin-top: var(--gap-section);
+  padding-top: var(--gap-section);
+  padding-bottom: 64px;
 }
 
-.row {
-  display: flex;
-  align-items: flex-end;
-  min-height: clamp(84px, 10vw, 150px);
-  padding: 0 20px 0.35em;
-  font-family: var(--font-display);
+.title {
+  font-size: var(--step-lead);
   font-weight: 500;
-  font-size: clamp(1.75rem, 0.6rem + 4.6vw, 5.5rem);
-  line-height: 1;
-  letter-spacing: -0.025em;
+  color: var(--muted);
+  margin-bottom: 24px;
 }
 
-.row:nth-child(odd) {
-  background: var(--surface);
-}
-
-.row:nth-child(even) {
-  background: var(--surface-2);
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 .link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 16px;
+  padding: 20px 0;
+  box-shadow: inset 0 1px 0 var(--line);
+  transition: color var(--t-hover) ease, box-shadow 400ms var(--ease-out);
+}
+
+.label {
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.text {
+  grid-column: 1;
+  font-size: var(--step-lead);
+  font-weight: 600;
+  letter-spacing: -0.02em;
   overflow-wrap: anywhere;
-  transition: color var(--t-hover) ease;
+}
+
+.arrow {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  width: 22px;
+  height: 22px;
+  transition: transform 400ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .link:hover {
     color: var(--accent);
+    box-shadow: inset 0 2px 0 var(--accent);
+  }
+
+  .link:hover .arrow {
+    transform: translate(4px, -4px);
   }
 }
 
-.greetLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 24px;
+.link:focus-visible {
+  color: var(--accent);
 }
 
-.arrow {
-  display: inline-grid;
-  place-items: center;
-  width: 0.9em;
-  height: 0.9em;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--accent-ink);
-  line-height: 1;
-  transition: transform var(--t-hover) var(--ease-out);
-}
-
-.arrow svg {
-  width: 48%;
-  height: 48%;
-}
-
-.greetLink:active .arrow {
-  transform: scale(0.94);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .greetLink:hover .arrow {
-    transform: translateX(6px);
-  }
-}
-
-@media (max-width: 720px) {
-  .row {
-    padding-inline: var(--margin);
-    font-size: 7.4vw;
-  }
-
-  .greet {
-    background: var(--accent) !important;
-    color: var(--accent-ink);
-  }
-
-  .greetLink {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .greet .arrow {
-    width: 56px;
-    height: 56px;
-    background: var(--accent-ink);
-    color: var(--accent);
+@media (max-width: 860px) {
+  .list {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }

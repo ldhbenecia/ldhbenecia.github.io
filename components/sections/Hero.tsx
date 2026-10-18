@@ -22,18 +22,17 @@ export function Hero() {
         </h1>
         <p className={styles.sentence}>{profile.intro}</p>
         <div className={styles.actions}>
-          <a className="button" href={`mailto:${profile.email}`}>
-            메일 보내기
-          </a>
-          <a className="button button--ghost" href={profile.github} target="_blank" rel="noreferrer">
-            GitHub
-          </a>
+          {profile.links.map((l, i) => (
+            <a key={l.href} className={i === 0 ? 'button' : 'button button--ghost'} href={l.href} target="_blank" rel="noreferrer">
+              {l.label}
+            </a>
+          ))}
         </div>
       </div>
 
       <p className={styles.status}>
         <span className={styles.dot} aria-hidden="true" />
-        <span id="topology-status">로컬 클러스터 구성</span>
+        <span id="topology-status">local cluster</span>
       </p>
     </header>
   )

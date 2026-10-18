@@ -9,9 +9,6 @@
   --accent: #7b9fd4; /* 채도 낮은 스틸 블루. --bg 위 대비 7.4:1 */
   --accent-strong: #9bb8e6;
   --accent-ink: #050608;
-  --field: #0b1220;
-  --field-ink: #e6e9ee;
-  --field-muted: #9aa4b6;
 
   /* 책등 색. 분야마다 하나, 모두 글자 대비 4.5:1 이상 */
   --tag-infra: #7b9fd4;
@@ -70,9 +67,6 @@
   --accent: #2c5aa6; /* --bg 위 대비 6.6:1 */
   --accent-strong: #1f4682;
   --accent-ink: #ffffff;
-  --field: #e6ebf3;
-  --field-ink: #0b1220;
-  --field-muted: #4a5568;
 
   --tag-infra: #2c5aa6;
   --tag-infra-ink: #ffffff;
