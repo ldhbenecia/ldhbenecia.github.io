@@ -85,7 +85,8 @@ export function Topology() {
         const t = (b.x - 0.3) / 0.64
         b.ax = wide ? left + (0.42 + t * 0.5) * cw : left + 6 + t * (cw - 6 - labelRoom)
         b.ay = wide ? (0.14 + b.y * 0.66) * h : (0.12 + b.y * 0.44) * h
-        if (b.px === 0 && b.py === 0) {
+        // 움직이지 않는 상태(첫 배치, 동작 줄이기)에서는 새 기준점으로 바로 옮김
+        if (reduced || (b.px === 0 && b.py === 0)) {
           b.px = b.ax
           b.py = b.ay
         }
@@ -245,6 +246,9 @@ export function Topology() {
       if (running || reduced) return
       running = true
       last = performance.now()
+      // 멈춰 있던 시간이 초당 요청 수 계산에 섞이지 않게
+      rateAt = last
+      delivered = 0
       raf = requestAnimationFrame(frame)
     }
     const stop = () => {
