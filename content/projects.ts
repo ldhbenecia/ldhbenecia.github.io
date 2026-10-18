@@ -76,11 +76,14 @@ export const projects: Project[] = [
     images: [
       { src: '/images/cairn_statistic.png', alt: 'Cairn 대시보드. PR 608, 커밋 2,275, 활동일 119와 누적 활동 그래프', width: 1800, height: 1161, framed: true },
       { src: '/images/cairn_graph.png', alt: 'Cairn 그래프 뷰. 일간·주간·월간 일지가 위키 링크로 이어진 네트워크', width: 1800, height: 1161, framed: true },
+      { src: '/images/cairn_summarizing.png', alt: 'Cairn 일지 발행. 활동 수집 → AI 요약 → 일지 기록 단계 진행 표시', width: 1800, height: 1161, framed: true },
+      { src: '/images/cairn_backfill.png', alt: 'Cairn 백필. 지난 여러 날을 하루씩 수집·요약·발행하는 진행 트리', width: 1800, height: 1161, framed: true },
+      { src: '/images/cairn_worklog.png', alt: 'Cairn이 생성한 업무 일지. Summary·Share·Done 으로 정리된 하루 작업', width: 1240, height: 760, framed: true },
     ],
     points: [
       {
         title: 'AI를 규칙과 검증으로 통제하는 팀원처럼',
-        body: 'CLAUDE.md와 AGENTS.md로 Claude Code와 Codex가 같은 규칙을 읽게 하고, 규칙 7종과 ADR·진행 일지를 작업 전에 먼저 읽도록 구성했습니다. PR 리뷰 스킬, Husky·commitlint, CI의 typecheck·lint·test로 사람이 보기 전에 체계가 먼저 거르고, 머지된 PR의 리뷰를 주기적으로 전수 감사해 놓친 지적 8건을 반영했습니다. 평일 업무 시간 커밋 4% 수준으로 PR 330개 이상을 유지하고 있습니다.',
+        body: 'CLAUDE.md와 AGENTS.md로 Claude Code와 Codex가 같은 규칙을 읽게 하고, 규칙 7종과 ADR·진행 일지를 작업 전에 먼저 읽도록 구성했습니다. PR 리뷰 스킬, Husky·commitlint, CI의 typecheck·lint·test로 사람이 보기 전에 체계가 먼저 거르고, 머지된 PR의 리뷰를 주기적으로 전수 감사해 놓친 지적 8건을 반영했습니다. 커밋의 96%를 퇴근 후와 주말에 하면서 PR 330개 이상을 이어 왔습니다.',
       },
       {
         title: '요약 96초 → 28초, 출력 토큰 85% 절감',
