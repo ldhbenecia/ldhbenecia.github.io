@@ -17,16 +17,12 @@ colors:
   accent: "#7b9fd4"
   accent-strong: "#9bb8e6"
   accent-ink: "#050608"
-  tag-infra: "#7b9fd4"
-  tag-infra-ink: "#050608"
-  tag-backend: "#24406f"
-  tag-backend-ink: "#ffffff"
-  tag-product: "#c3cbd8"
-  tag-product-ink: "#050608"
-  tag-study: "#1a2438"
-  tag-study-ink: "#e6e9ee"
   button-hover: "#ffffff"
   window: "#16181d"
+  window-edge: "rgba(255, 255, 255, 0.09)"
+  chrome-close: "#ff5f57"
+  chrome-min: "#febc2e"
+  chrome-max: "#28c840"
 typography:
   display:
     fontFamily: Geist, Pretendard Variable
@@ -62,11 +58,10 @@ A one-page portfolio for a backend engineer who works across backend, infrastruc
 - **Ink (`ink`)** is used for all running text. **Muted (`muted`)** is only for secondary notes, labels, before-values and inactive navigation.
 - **Accent (`accent`)** is a low-saturation steel blue reserved for links on hover, after-values in measurements, the current navigation item, and interactive feedback. It never fills a section.
 - **Line (`line`)** draws topology edges, list separators and the scrolled navigation edge only.
-- The four `tag-*` pairs colour repository spines by discipline (infra, backend, product, study); each background is always paired with its own `-ink`.
 
 ## Themes
 
-Dark is the default; the light theme follows the system setting until the visitor picks one, and the choice is remembered. Token names stay the same; only values change.
+Dark is the default; the light theme follows the system setting until the visitor picks one, and the choice is remembered. Token names stay the same; only values change. Window and chrome colours are the same in both themes.
 
 | Token | Light value |
 | --- | --- |
@@ -79,12 +74,7 @@ Dark is the default; the light theme follows the system setting until the visito
 | accent | #2c5aa6 |
 | accent-strong | #1f4682 |
 | accent-ink | #ffffff |
-| tag-infra / tag-infra-ink | #2c5aa6 / #ffffff |
-| tag-backend / tag-backend-ink | #c9d6ee / #0b1220 |
-| tag-product / tag-product-ink | #0b1220 / #ffffff |
-| tag-study / tag-study-ink | #dfe4ec / #0b1220 |
 | button-hover | #1f4682 |
-| window | #16181d |
 
 - Switching themes reveals the new theme as a circle growing from the toggle button; without View Transition support colours fade, and under reduced motion the switch is instant.
 - Every colour the topology canvas draws comes from theme tokens and is re-read when the theme changes.
@@ -106,7 +96,7 @@ Dark is the default; the light theme follows the system setting until the visito
 
 - Nothing at rest carries a shadow except product screenshots shown as macOS windows.
 - The navigation gains an opaque `bg` ground and a `line` edge once the hero has scrolled away.
-- Project screenshots sit on the `window` colour in both themes, so a macOS window always reads as an object on the page.
+- Project screenshots sit on the `window` colour in both themes, so a macOS window always reads as an object on the page. Unframed screenshots get a `window-edge` outline and traffic-light dots in `chrome-close`, `chrome-min` and `chrome-max`.
 
 ## Shapes
 
