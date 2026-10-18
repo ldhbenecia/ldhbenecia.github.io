@@ -23,6 +23,20 @@
   --tag-study: #1a2438;
   --tag-study-ink: #e6e9ee;
 
+  --button-hover: #ffffff;
+  --window: #16181d;
+
+  /* 히어로 그래프. canvas 가 테마가 바뀔 때마다 다시 읽음 */
+  --topo-line: rgba(60, 84, 128, 0.55);
+  --topo-line-hot: rgba(123, 159, 212, 0.9);
+  --topo-label: #6f7889;
+  --topo-label-hot: #e6e9ee;
+  --topo-pulse: #9bb8e6;
+  --topo-platform: #7b9fd4;
+  --topo-msa: #c3cbd8;
+  --topo-morris: #5b7bb0;
+  --topo-app: #8a93a3;
+
   --font-display: var(--font-geist), 'Pretendard Variable', Pretendard, system-ui, sans-serif;
   --font-text: var(--font-geist), 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
@@ -42,4 +56,49 @@
   --t-press: 140ms;
   --t-hover: 180ms;
   --t-reveal: 800ms;
+}
+
+/* 라이트. 같은 역할을 밝은 바탕에서 대비 4.5:1 이상으로 */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --surface: #eaedf2;
+  --surface-2: #dfe4ec;
+  --line: #d0d7e2;
+  --ink: #0b1220;
+  --muted: #536072; /* --bg 위 대비 6.2:1 */
+  --accent: #2c5aa6; /* --bg 위 대비 6.6:1 */
+  --accent-strong: #1f4682;
+  --accent-ink: #ffffff;
+  --field: #e6ebf3;
+  --field-ink: #0b1220;
+  --field-muted: #4a5568;
+
+  --tag-infra: #2c5aa6;
+  --tag-infra-ink: #ffffff;
+  --tag-backend: #c9d6ee;
+  --tag-backend-ink: #0b1220;
+  --tag-product: #0b1220;
+  --tag-product-ink: #ffffff;
+  --tag-study: #dfe4ec;
+  --tag-study-ink: #0b1220;
+
+  --button-hover: #1f4682;
+  --window: #16181d;
+
+  --topo-line: rgba(44, 90, 166, 0.28);
+  --topo-line-hot: rgba(44, 90, 166, 0.85);
+  --topo-label: #6b7586;
+  --topo-label-hot: #0b1220;
+  --topo-pulse: #2c5aa6;
+  --topo-platform: #2c5aa6;
+  --topo-msa: #0b1220;
+  --topo-morris: #5b7bb0;
+  --topo-app: #8a93a3;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gap-section: 96px;
+  }
 }

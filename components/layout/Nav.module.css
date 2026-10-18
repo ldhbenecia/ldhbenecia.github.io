@@ -3,9 +3,8 @@
   z-index: 50;
   inset: 0 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 24px;
+  gap: 8px;
   padding: 20px var(--margin);
   transition: background-color 300ms ease, padding 300ms var(--ease-out);
 }
@@ -25,6 +24,7 @@
 .links {
   display: flex;
   gap: 4px;
+  margin-left: auto;
 }
 
 .link {

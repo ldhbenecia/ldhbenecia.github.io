@@ -4,13 +4,21 @@ import { useEffect, useRef } from 'react'
 import { topoEdges, topoNodes, type TopoNode } from '@/content/topology'
 import styles from './Topology.module.css'
 
-const COLORS = {
-  line: 'rgba(60, 84, 128, 0.55)',
-  lineHot: 'rgba(123, 159, 212, 0.9)',
-  label: '#6f7889',
-  labelHot: '#e6e9ee',
-  pulse: '#9bb8e6',
-  group: { platform: '#7b9fd4', msa: '#c3cbd8', morris: '#5b7bb0', app: '#8a93a3' } as Record<TopoNode['group'], string>,
+// 색은 테마 토큰에서 읽음. 테마가 바뀌면 다시 읽음
+const readColors = () => {
+  const css = getComputedStyle(document.documentElement)
+  const v = (name: string) => css.getPropertyValue(name).trim()
+  return {
+    line: v('--topo-line'),
+    lineHot: v('--topo-line-hot'),
+    label: v('--topo-label'),
+    labelHot: v('--topo-label-hot'),
+    pulse: v('--topo-pulse'),
+    group: { platform: v('--topo-platform'), msa: v('--topo-msa'), morris: v('--topo-morris'), app: v('--topo-app') } as Record<
+      TopoNode['group'],
+      string
+    >,
+  }
 }
 
 const REPEL_RADIUS = 150
@@ -32,6 +40,7 @@ export function Topology({ statusId }: { statusId: string }) {
     // canvas 의 font 에는 CSS 변수를 쓸 수 없어 계산된 이름을 넣음
     const family = getComputedStyle(document.documentElement).getPropertyValue('--font-geist').trim() || 'system-ui'
     const labelFont = `500 12px ${family}, system-ui, sans-serif`
+    let colors = readColors()
 
     const index = new Map(topoNodes.map((n, i) => [n.id, i]))
     const edges = topoEdges.map(([a, b]) => [index.get(a)!, index.get(b)!] as const)
@@ -142,7 +151,7 @@ export function Topology({ statusId }: { statusId: string }) {
       ctx.lineWidth = 1
       for (const [a, b] of edges) {
         const isHot = hovered === a || hovered === b
-        ctx.strokeStyle = isHot ? COLORS.lineHot : COLORS.line
+        ctx.strokeStyle = isHot ? colors.lineHot : colors.line
         ctx.beginPath()
         ctx.moveTo(bodies[a].px, bodies[a].py)
         ctx.lineTo(bodies[b].px, bodies[b].py)
@@ -157,16 +166,15 @@ export function Topology({ statusId }: { statusId: string }) {
         const y = a.py + (b.py - a.py) * t
         const tx = a.px + (b.px - a.px) * Math.max(0, t - 0.08)
         const ty = a.py + (b.py - a.py) * Math.max(0, t - 0.08)
-        const trail = ctx.createLinearGradient(tx, ty, x, y)
-        trail.addColorStop(0, 'rgba(155, 184, 230, 0)')
-        trail.addColorStop(1, 'rgba(155, 184, 230, 0.9)')
-        ctx.strokeStyle = trail
+        ctx.strokeStyle = colors.pulse
         ctx.lineWidth = 1.5
+        ctx.globalAlpha = 0.6
         ctx.beginPath()
         ctx.moveTo(tx, ty)
         ctx.lineTo(x, y)
         ctx.stroke()
-        ctx.fillStyle = COLORS.pulse
+        ctx.globalAlpha = 1
+        ctx.fillStyle = colors.pulse
         ctx.beginPath()
         ctx.arc(x, y, 1.6, 0, Math.PI * 2)
         ctx.fill()
@@ -178,16 +186,18 @@ export function Topology({ statusId }: { statusId: string }) {
         const isHover = i === hovered
         const isNear = hot?.has(i) ?? false
         if (b.flash > 0) {
-          ctx.fillStyle = `rgba(123, 159, 212, ${b.flash * 0.22})`
+          ctx.fillStyle = colors.group.platform
+          ctx.globalAlpha = b.flash * 0.22
           ctx.beginPath()
           ctx.arc(b.px, b.py, 4 + (1 - b.flash) * 14, 0, Math.PI * 2)
           ctx.fill()
+          ctx.globalAlpha = 1
         }
-        ctx.fillStyle = COLORS.group[b.group]
+        ctx.fillStyle = colors.group[b.group]
         ctx.beginPath()
         ctx.arc(b.px, b.py, isHover ? 6 : 3.5, 0, Math.PI * 2)
         ctx.fill()
-        ctx.fillStyle = isHover || isNear ? COLORS.labelHot : COLORS.label
+        ctx.fillStyle = isHover || isNear ? colors.labelHot : colors.label
         ctx.fillText(b.label, b.px + 10, b.py)
       })
       host.style.cursor = hovered >= 0 ? 'crosshair' : ''
@@ -226,6 +236,11 @@ export function Topology({ statusId }: { statusId: string }) {
     const onVisibility = () => (document.hidden ? stop() : start())
 
     resize()
+    const themeWatch = new MutationObserver(() => {
+      colors = readColors()
+      if (!running) draw()
+    })
+    themeWatch.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
     const ro = new ResizeObserver(resize)
     ro.observe(host)
     // 화면 밖에 있을 때는 그리지 않음
@@ -238,6 +253,7 @@ export function Topology({ statusId }: { statusId: string }) {
 
     return () => {
       stop()
+      themeWatch.disconnect()
       ro.disconnect()
       io.disconnect()
       host.removeEventListener('pointermove', onMove)

@@ -10,6 +10,25 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   color-scheme: dark;
+  interpolate-size: allow-keywords;
+}
+
+/* 테마 전환. View Transition 이 있으면 원형으로 드러나고(스크립트가 clip-path 를 애니메이션),
+   없으면 바탕·글자색만 서서히 바뀜 */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.vt) body {
+    transition: background-color 400ms ease, color 400ms ease;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -134,7 +153,7 @@ button {
 
 @media (hover: hover) and (pointer: fine) {
   .button:hover {
-    background: #ffffff;
+    background: var(--button-hover);
   }
 }
 

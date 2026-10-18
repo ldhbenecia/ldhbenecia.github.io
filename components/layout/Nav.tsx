@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { profile } from '@/content/profile'
 import styles from './Nav.module.css'
+import { ThemeToggle } from './ThemeToggle'
 
 const links = [
   { id: 'impact', label: '성과' },
@@ -54,6 +55,7 @@ export function Nav() {
           </li>
         ))}
       </ul>
+      <ThemeToggle />
     </nav>
   )
 }
