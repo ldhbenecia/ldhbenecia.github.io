@@ -16,6 +16,7 @@ const links = [
 export function Nav() {
   const [active, setActive] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
@@ -41,9 +42,21 @@ export function Nav() {
     }
   }, [])
 
+  // 메뉴가 열린 동안 뒤 페이지가 스크롤되지 않게 하고 Esc 로 닫음
+  useEffect(() => {
+    if (!open) return
+    document.documentElement.style.overflow = 'hidden'
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.documentElement.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
   return (
-    <nav className={styles.nav} data-scrolled={scrolled} aria-label="주요 메뉴">
-      <a className={styles.wordmark} href="#top">
+    <nav className={styles.nav} data-scrolled={scrolled} data-open={open} aria-label="주요 메뉴">
+      <a className={styles.wordmark} href="#top" onClick={() => setOpen(false)}>
         {profile.handle}
       </a>
       <ul className={styles.links}>
@@ -56,6 +69,41 @@ export function Nav() {
         ))}
       </ul>
       <ThemeToggle />
+      <button
+        type="button"
+        className={styles.menuButton}
+        aria-expanded={open}
+        aria-controls="mobile-menu"
+        aria-label={open ? '메뉴 닫기' : '메뉴 열기'}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span />
+        <span />
+      </button>
+
+      <div id="mobile-menu" className={styles.sheet} hidden={!open}>
+        <ul>
+          {links.map((l, i) => (
+            <li key={l.id} style={{ '--i': i } as React.CSSProperties}>
+              <a
+                href={`#${l.id}`}
+                className={styles.sheetLink}
+                aria-current={active === l.id ? 'location' : undefined}
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p className={styles.sheetMail} style={{ '--i': links.length } as React.CSSProperties}>
+          {profile.links.map((l) => (
+            <a key={l.href} className="link" href={l.href} target="_blank" rel="noreferrer">
+              {l.label}
+            </a>
+          ))}
+        </p>
+      </div>
     </nav>
   )
 }

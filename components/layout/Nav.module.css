@@ -63,17 +63,144 @@
   }
 }
 
-@media (max-width: 640px) {
-  .links li:nth-child(n + 4) {
+/* 모바일 메뉴 버튼. 두 줄이 열리면 X 로 겹침 */
+.menuButton {
+  display: none;
+  position: relative;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menuButton span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ink);
+  transition: transform 400ms var(--ease-out);
+}
+
+.menuButton span:first-child {
+  transform: translateY(-4px);
+}
+
+.menuButton span:last-child {
+  transform: translateY(4px);
+}
+
+.nav[data-open='true'] .menuButton span:first-child {
+  transform: rotate(45deg);
+}
+
+.nav[data-open='true'] .menuButton span:last-child {
+  transform: rotate(-45deg);
+}
+
+.sheet {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 40px;
+  padding: 96px var(--margin) 48px;
+  background: var(--bg);
+}
+
+.sheet[hidden] {
+  display: none;
+}
+
+.sheetLink {
+  display: block;
+  padding: 6px 0;
+  font-size: clamp(2.5rem, 12vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--muted);
+}
+
+.sheetLink[aria-current='location'] {
+  color: var(--ink);
+}
+
+.sheetMail {
+  display: flex;
+  gap: 20px;
+  font-size: var(--step-body);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sheet li,
+  .sheetMail {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: sheet-in 600ms var(--ease-out) forwards;
+    animation-delay: calc(var(--i) * 55ms + 60ms);
+  }
+
+  .sheet:not([hidden]) {
+    animation: sheet-fade 250ms ease;
+  }
+}
+
+@keyframes sheet-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sheet-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* 메뉴가 열리면 막대 아래 줄과 바탕을 시트와 같게 */
+.nav[data-open='true'] {
+  background: var(--bg);
+  box-shadow: none;
+}
+
+.wordmark,
+.nav > :global(button) {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 720px) {
+  .nav {
+    padding-block: 12px;
+  }
+
+  .nav[data-scrolled='true'] {
+    padding-block: 10px;
+  }
+
+  .links {
     display: none;
   }
 
-  .link {
-    padding-inline: 8px;
+  .wordmark {
+    margin-right: auto;
   }
 
-  .link::after {
-    left: 8px;
-    right: 8px;
+  .menuButton {
+    display: block;
+  }
+}
+
+@media (min-width: 721px) {
+  .sheet {
+    display: none !important;
   }
 }

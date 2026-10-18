@@ -5,6 +5,11 @@ export const profile = {
   github: 'https://github.com/ldhbenecia',
   blog: 'https://velog.io/@ldhbenecia',
   linkedin: 'https://linkedin.com/in/ldhbenecia',
+  links: [
+    { label: 'GitHub', text: 'github.com/ldhbenecia', href: 'https://github.com/ldhbenecia' },
+    { label: '블로그', text: 'velog.io/@ldhbenecia', href: 'https://velog.io/@ldhbenecia' },
+    { label: 'LinkedIn', text: 'linkedin.com/in/ldhbenecia', href: 'https://linkedin.com/in/ldhbenecia' },
+  ],
   summary: '느린 쿼리를 재고 고치는 백엔드 엔지니어. 지금은 SRE·DevOps로 넘어가는 중입니다.',
   intro: '캐시워크(MAU 550만)의 쿼리와 관측성을 다루는 백엔드 엔지니어이고, 지금은 SRE·DevOps로 넘어가는 중입니다. 뒤의 그래프는 퇴근 뒤 직접 운영하는 클러스터와 프로젝트 구성입니다.',
 }
