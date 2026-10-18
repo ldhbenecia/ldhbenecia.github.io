@@ -9,11 +9,18 @@ type Theme = 'light' | 'dark'
 
 const current = (): Theme => (document.documentElement.dataset.theme === 'light' ? 'light' : 'dark')
 
+// 브라우저 상단 색을 시스템 설정이 아니라 지금 고른 테마의 바탕색에 맞춤
+const syncThemeColor = () => {
+  const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim()
+  document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.setAttribute('content', bg))
+}
+
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null)
 
   useEffect(() => {
     setTheme(current())
+    syncThemeColor()
     // 직접 고른 적이 없으면 시스템 설정 변경을 그대로 따라감
     const mq = window.matchMedia('(prefers-color-scheme: light)')
     const onSystem = (e: MediaQueryListEvent) => {
@@ -21,6 +28,7 @@ export function ThemeToggle() {
         if (localStorage.getItem('theme')) return
       } catch {}
       document.documentElement.dataset.theme = e.matches ? 'light' : 'dark'
+      syncThemeColor()
       setTheme(current())
     }
     mq.addEventListener('change', onSystem)
@@ -31,6 +39,7 @@ export function ThemeToggle() {
     const next: Theme = current() === 'light' ? 'dark' : 'light'
     const apply = () => {
       document.documentElement.dataset.theme = next
+      syncThemeColor()
       try {
         localStorage.setItem('theme', next)
       } catch {}
@@ -54,7 +63,11 @@ export function ThemeToggle() {
     transition.ready.then(() => {
       root.animate(
         { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
-        { duration: 650, easing: 'cubic-bezier(0.76, 0, 0.24, 1)', pseudoElement: '::view-transition-new(root)' },
+        {
+          duration: 650,
+          easing: getComputedStyle(root).getPropertyValue('--ease-in-out').trim(),
+          pseudoElement: '::view-transition-new(root)',
+        },
       )
     })
     transition.finished.finally(() => root.classList.remove('vt'))

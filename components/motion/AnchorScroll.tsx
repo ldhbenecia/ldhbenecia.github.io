@@ -11,12 +11,10 @@ export function AnchorScroll() {
       const link = (e.target as Element).closest?.('a[href^="#"]')
       if (!link) return
       const id = link.getAttribute('href')!.slice(1)
-      const target = id === 'top' ? document.body : document.getElementById(id)
+      const target = document.getElementById(id)
       if (!target) return
       e.preventDefault()
-      const reduced = prefersReducedMotion()
-      if (id === 'top') window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' })
-      else target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' })
+      target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' })
       if (location.hash) history.replaceState(null, '', location.pathname + location.search)
     }
     document.addEventListener('click', onClick)
