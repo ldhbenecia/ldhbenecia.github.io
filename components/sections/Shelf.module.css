@@ -1,0 +1,124 @@
+.section {
+  padding-top: var(--gap-section);
+  padding-bottom: 96px;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 32px;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: var(--step-lead);
+}
+
+.note {
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.shelf {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.shelf::-webkit-scrollbar {
+  display: none;
+}
+
+.shelf > li {
+  flex: 1 0 auto;
+}
+
+.spine {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  height: 420px;
+  min-width: 46px;
+  padding: 16px 0;
+  writing-mode: vertical-rl;
+  background: var(--surface);
+  transition: background-color var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out);
+}
+
+.spine:active {
+  transform: translateY(4px);
+}
+
+.spineName {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding-inline: 12px;
+}
+
+.spineTag {
+  font-size: 0.875rem;
+  padding: 6px 4px;
+  white-space: nowrap;
+}
+
+.spine[data-tag='infra'] .spineTag {
+  background: var(--tag-infra);
+  color: var(--tag-infra-ink);
+}
+
+.spine[data-tag='backend'] .spineTag {
+  background: var(--tag-backend);
+  color: var(--tag-backend-ink);
+}
+
+.spine[data-tag='product'] .spineTag {
+  background: var(--tag-product);
+  color: var(--tag-product-ink);
+}
+
+.spine[data-tag='study'] .spineTag {
+  background: var(--tag-study);
+  color: var(--tag-study-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .spine:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+}
+
+.spine:focus-visible {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+@media (max-width: 720px) {
+  .shelf {
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow: visible;
+  }
+
+  .shelf > li {
+    flex: 0 1 auto;
+  }
+
+  .spine {
+    writing-mode: horizontal-tb;
+    height: auto;
+    min-width: 0;
+    padding: 8px 0 8px 0;
+    align-items: center;
+    gap: 0;
+  }
+
+  .spineTag {
+    padding: 2px 8px;
+    margin-right: 8px;
+  }
+}

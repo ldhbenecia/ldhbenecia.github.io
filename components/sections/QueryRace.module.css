@@ -1,0 +1,122 @@
+.section {
+  padding-top: var(--gap-section);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 24px;
+  align-items: start;
+}
+
+.title {
+  grid-column: 1 / 6;
+  font-size: var(--step-head);
+  line-height: 1.05;
+}
+
+.copy {
+  grid-column: 7 / 13;
+  display: grid;
+  gap: 28px;
+}
+
+.copy > p {
+  max-width: 60ch;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.controls button:disabled {
+  cursor: progress;
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.status {
+  font-size: var(--step-small);
+  color: var(--muted);
+  min-height: 1.5em;
+}
+
+.specimens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 24px;
+  margin-top: 12vh;
+}
+
+.specimen {
+  min-width: 0;
+}
+
+.caption {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-top: 16px;
+  min-height: 1.6em;
+}
+
+.box {
+  --fs: clamp(4.5rem, 11vw, 10rem);
+}
+
+/* 막대 길이는 경과 시간 / 원래 걸리던 시간 */
+.bar {
+  height: 6px;
+  margin-top: 20px;
+  background: var(--surface-2);
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  background: var(--muted);
+  transform-origin: left;
+}
+
+.barAfter > span {
+  background: var(--accent);
+}
+
+.figure {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.boxAfter .figure {
+  color: var(--accent);
+}
+
+@media (max-width: 860px) {
+  .head {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+
+  .title,
+  .copy {
+    grid-column: 1;
+  }
+
+  .specimens {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+    margin-top: 64px;
+  }
+
+  .box {
+    --fs: 22vw;
+  }
+}

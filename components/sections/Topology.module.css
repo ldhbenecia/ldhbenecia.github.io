@@ -1,0 +1,18 @@
+.canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .canvas {
+    opacity: 0;
+    animation: canvas-in 1400ms var(--ease-soft) 200ms forwards;
+  }
+}
+
+@keyframes canvas-in {
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,45 @@
+:root {
+  /* 검정과 짙은 네이비. 밝은 면은 두지 않고, 액센트는 링크·포인트·인터랙션에만 */
+  --bg: #050608;
+  --surface: #0b1220;
+  --surface-2: #101a2e;
+  --line: #1c2840; /* 토폴로지 선, 표 줄무늬 */
+  --ink: #e6e9ee;
+  --muted: #8a93a3; /* --bg 위 대비 6.6:1 */
+  --accent: #7b9fd4; /* 채도 낮은 스틸 블루. --bg 위 대비 7.4:1 */
+  --accent-strong: #9bb8e6;
+  --accent-ink: #050608;
+  --field: #0b1220;
+  --field-ink: #e6e9ee;
+  --field-muted: #9aa4b6;
+
+  /* 책등 색. 분야마다 하나, 모두 글자 대비 4.5:1 이상 */
+  --tag-infra: #7b9fd4;
+  --tag-infra-ink: #050608;
+  --tag-backend: #24406f;
+  --tag-backend-ink: #ffffff;
+  --tag-product: #c3cbd8;
+  --tag-product-ink: #050608;
+  --tag-study: #1a2438;
+  --tag-study-ink: #e6e9ee;
+
+  --font-display: var(--font-geist), 'Pretendard Variable', Pretendard, system-ui, sans-serif;
+  --font-text: var(--font-geist), 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --step-small: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2.25rem, 1.2rem + 4.4vw, 5rem);
+  --step-display: clamp(2.75rem, 1rem + 5.2vw, 6.25rem);
+
+  --margin: clamp(16px, 2.2vw, 32px);
+  --gap-section: clamp(120px, 14vw, 220px);
+  --max: 1440px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --t-press: 140ms;
+  --t-hover: 180ms;
+  --t-reveal: 800ms;
+}

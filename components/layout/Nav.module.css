@@ -1,0 +1,79 @@
+.nav {
+  position: fixed;
+  z-index: 50;
+  inset: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 20px var(--margin);
+  transition: background-color 300ms ease, padding 300ms var(--ease-out);
+}
+
+/* 히어로를 지나면 바닥색을 깔아 아래 글자와 겹치지 않게 함 */
+.nav[data-scrolled='true'] {
+  padding-block: 14px;
+  background: var(--bg);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.wordmark {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.links {
+  display: flex;
+  gap: 4px;
+}
+
+.link {
+  position: relative;
+  display: block;
+  padding: 6px 12px;
+  font-size: var(--step-small);
+  color: var(--muted);
+  transition: color var(--t-hover) ease;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms var(--ease-out);
+}
+
+.link[aria-current='location'] {
+  color: var(--ink);
+}
+
+.link[aria-current='location']::after {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--ink);
+  }
+}
+
+@media (max-width: 640px) {
+  .links li:nth-child(n + 4) {
+    display: none;
+  }
+
+  .link {
+    padding-inline: 8px;
+  }
+
+  .link::after {
+    left: 8px;
+    right: 8px;
+  }
+}

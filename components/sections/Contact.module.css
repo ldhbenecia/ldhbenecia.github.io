@@ -1,0 +1,88 @@
+.section {
+  margin-top: var(--gap-section);
+}
+
+.row {
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(84px, 10vw, 150px);
+  padding: 0 20px 0.35em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 0.6rem + 4.6vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.row:nth-child(odd) {
+  background: var(--surface);
+}
+
+.row:nth-child(even) {
+  background: var(--surface-2);
+}
+
+.link {
+  overflow-wrap: anywhere;
+  transition: color var(--t-hover) ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--accent);
+  }
+}
+
+.greetLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.9em;
+  line-height: 1;
+  transition: transform var(--t-hover) var(--ease-out);
+}
+
+.greetLink:active .arrow {
+  transform: scale(0.94);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .greetLink:hover .arrow {
+    transform: translateX(6px);
+  }
+}
+
+@media (max-width: 720px) {
+  .row {
+    padding-inline: var(--margin);
+    font-size: 7.4vw;
+  }
+
+  .greet {
+    background: var(--accent) !important;
+    color: var(--accent-ink);
+  }
+
+  .greetLink {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .greet .arrow {
+    width: 56px;
+    height: 56px;
+    background: var(--accent-ink);
+    color: var(--accent);
+    font-size: 1.5rem;
+  }
+}

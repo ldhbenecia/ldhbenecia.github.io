@@ -1,0 +1,318 @@
+.projects {
+  display: grid;
+}
+
+.chapter {
+  padding-top: var(--gap-section);
+  scroll-margin-top: 24px;
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 24px;
+  row-gap: 28px;
+}
+
+.name {
+  grid-column: 1 / -1;
+  font-family: var(--font-display);
+  font-size: var(--step-head);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.line {
+  grid-column: 1 / 8;
+  font-size: var(--step-lead);
+  line-height: 1.5;
+}
+
+.meta {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 2fr 1fr 4fr 2fr;
+  gap: 24px;
+  margin-top: 8px;
+  font-size: var(--step-small);
+}
+
+.meta dt {
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.after {
+  display: grid;
+  gap: 80px;
+  margin-top: 80px;
+}
+
+/* 그림 */
+.shot {
+  min-width: 0;
+}
+
+.framed img,
+.window img {
+  width: 100%;
+  transition: transform 1200ms var(--ease-soft);
+}
+
+/* 이미지 자체에 창 테두리가 없는 화면에 같은 모양의 맥 창을 씌움 */
+.window {
+  overflow: hidden;
+  border-radius: 10px;
+  background: #16181d;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.09), 0 28px 60px -20px rgba(0, 0, 0, 0.7);
+}
+
+.window img {
+  border-radius: 0 0 10px 10px;
+}
+
+.chrome {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+}
+
+.chrome span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #3a3e47;
+}
+
+.chrome span:nth-child(1) {
+  background: #ff5f57;
+}
+
+.chrome span:nth-child(2) {
+  background: #febc2e;
+}
+
+.chrome span:nth-child(3) {
+  background: #28c840;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shot:hover img {
+    transform: scale(1.012);
+  }
+}
+
+.caption {
+  margin-top: 12px;
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+.wideShot {
+  max-width: var(--max);
+  margin: 80px auto 0;
+  padding-inline: var(--margin);
+}
+
+
+.secondShot {
+  width: min(100%, 860px);
+  justify-self: end;
+}
+
+/* 숫자 */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px clamp(40px, 7vw, 120px);
+}
+
+.factValue {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 1.5rem + 5vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.factLabel {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.facts > div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.facts > div > .factValue {
+  order: 2;
+}
+
+/* 글 */
+.points {
+  display: grid;
+  gap: 56px clamp(32px, 5vw, 96px);
+}
+
+.points[data-cols='2'] {
+  grid-template-columns: 1fr 1fr;
+}
+
+.points[data-cols='3'] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.point {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.point p {
+  color: var(--ink);
+}
+
+.pointTitle {
+  font-size: var(--step-lead);
+}
+
+/* side: 글 왼쪽, 세로로 긴 화면 오른쪽 */
+.side {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: clamp(40px, 6vw, 120px);
+  margin-top: 80px;
+  align-items: start;
+}
+
+.sideShot {
+  position: sticky;
+  top: 32px;
+}
+
+/* pair: 화면 두 장 왼쪽, 글 오른쪽 */
+.pair {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: clamp(40px, 5vw, 96px);
+  margin-top: 80px;
+  align-items: start;
+}
+
+.pair > div:last-child {
+  display: grid;
+  gap: 64px;
+}
+
+.pairShots {
+  display: grid;
+  gap: 24px;
+}
+
+.pairSecond {
+  width: 72%;
+  justify-self: end;
+}
+
+/* pipeline: 커밋 하나가 배포가 되는 길 */
+.pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  counter-reset: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 0.8rem + 1vw, 1.625rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  padding: 18px 22px;
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+/* 커밋 하나가 단계를 차례로 지나가는 것처럼 한 칸씩 점등 */
+@media (prefers-reduced-motion: no-preference) {
+  .step {
+    animation: lit 7.2s var(--ease-in-out) infinite;
+    animation-delay: calc(var(--i, 0) * 1.2s);
+  }
+}
+
+@keyframes lit {
+  0%,
+  14% {
+    background: var(--surface-2);
+    color: var(--accent-strong);
+  }
+  22%,
+  100% {
+    background: var(--surface);
+    color: var(--ink);
+  }
+}
+
+.step:not(:last-child)::after {
+  content: '→';
+  margin-left: 6px;
+  color: var(--accent);
+}
+
+@media (max-width: 960px) {
+  .points[data-cols='3'] {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .line {
+    grid-column: 1 / -1;
+  }
+
+  .meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .metaStack {
+    grid-column: 1 / -1;
+  }
+
+  .points[data-cols='2'],
+  .points[data-cols='3'] {
+    grid-template-columns: 1fr;
+  }
+
+  .side,
+  .pair {
+    grid-template-columns: 1fr;
+  }
+
+  .side .sideShot {
+    position: static;
+    order: -1;
+  }
+
+  .pairSecond {
+    width: 100%;
+  }
+
+  .after,
+  .side,
+  .pair,
+  .wideShot {
+    margin-top: 56px;
+  }
+}

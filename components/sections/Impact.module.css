@@ -1,0 +1,129 @@
+.section {
+  padding-top: var(--gap-section);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--step-head);
+  line-height: 1.02;
+}
+
+.indent {
+  padding-left: calc(2 / 12 * 100%);
+}
+
+.table {
+  width: 100%;
+  margin-top: 72px;
+  border-collapse: collapse;
+  font-size: 1.0625rem;
+}
+
+.row:nth-of-type(odd) {
+  background: var(--surface);
+}
+
+.row td {
+  padding: 14px 16px;
+  vertical-align: baseline;
+}
+
+.spacer td {
+  height: 28px;
+  padding: 0;
+}
+
+.year {
+  width: calc(2 / 12 * 100%);
+  font-weight: 600;
+}
+
+.where {
+  width: calc(3 / 12 * 100%);
+  color: var(--muted);
+}
+
+.what {
+  width: calc(4 / 12 * 100%);
+}
+
+.delta {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.before {
+  color: var(--muted);
+}
+
+.after {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .indent {
+    padding-left: 2.5ch;
+  }
+
+  .table,
+  .table tbody,
+  .row,
+  .row td {
+    display: block;
+  }
+
+  .table {
+    margin-top: 40px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 14px 12px;
+    column-gap: 16px;
+  }
+
+  .row td {
+    padding: 0;
+    width: auto;
+  }
+
+  .yearShown {
+    grid-column: 1 / -1;
+    font-size: 1.375rem;
+    margin-bottom: 8px;
+  }
+
+  .year:not(.yearShown) {
+    display: contents;
+  }
+
+  .what {
+    grid-column: 1;
+    order: 1;
+  }
+
+  .delta {
+    grid-column: 2;
+    grid-row: span 2;
+    align-self: center;
+    order: 2;
+  }
+
+  .where {
+    grid-column: 1;
+    order: 3;
+    font-size: 0.9375rem;
+  }
+
+  .spacer {
+    display: block;
+    height: 24px;
+  }
+
+  .spacer td {
+    display: none;
+  }
+}
