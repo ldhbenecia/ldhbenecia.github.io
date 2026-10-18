@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { race } from '@/content/impact'
+import { prefersReducedMotion } from '@/lib/motion'
 import styles from './QueryRace.module.css'
 
 const { beforeMs, afterMs } = race
@@ -16,6 +17,11 @@ export function QueryRace() {
 
   const run = useCallback(() => {
     cancelAnimationFrame(rafRef.current)
+    // 동작 줄이기를 켠 사람에게는 18초 재생 대신 결과만 보여 줌
+    if (prefersReducedMotion()) {
+      setElapsed(beforeMs)
+      return
+    }
     const start = performance.now()
     setRunning(true)
     setElapsed(0)
@@ -39,7 +45,8 @@ export function QueryRace() {
         io.disconnect()
         run()
       },
-      { threshold: 0.45 },
+      // 비율 기준이면 화면보다 긴 섹션(가로 폰 등)에서 영영 시작되지 않음. 머리가 화면 60% 지점을 지나면 시작
+      { rootMargin: '0px 0px -40% 0px' },
     )
     io.observe(el)
     return () => {
@@ -65,10 +72,10 @@ export function QueryRace() {
           </p>
           <div className={styles.controls} data-reveal style={{ '--i': 2 }}>
             <button type="button" className="button" onClick={run} disabled={running}>
-              {running ? '도는 중…' : '두 쿼리 다시 돌리기'}
+              {running ? race.running : race.replay}
             </button>
             <p className={styles.status} aria-live="polite">
-              {beforeDone ? `같은 ${race.rows}, 약 ${Math.round(beforeMs / afterMs)}배 빠름` : afterDone ? '새 쿼리는 이미 끝남' : ''}
+              {beforeDone ? `같은 ${race.rows}, 약 ${Math.round(beforeMs / afterMs)}배 빠름` : afterDone ? race.afterFirst : ''}
             </p>
           </div>
         </div>
@@ -83,8 +90,8 @@ export function QueryRace() {
             <span style={{ transform: `scaleX(${elapsed / beforeMs})` }} />
           </div>
           <figcaption className={styles.caption}>
-            이전 · {race.beforeLabel}
-            {beforeDone ? ' · 끝남' : running ? ' · 아직 읽는 중' : ''}
+            {race.beforeLabel}
+            {beforeDone ? ` · ${race.done}` : running ? ` · ${race.stillRunning}` : ''}
           </figcaption>
         </figure>
         <figure className={styles.specimen}>
@@ -95,8 +102,8 @@ export function QueryRace() {
             <span style={{ transform: `scaleX(${Math.min(elapsed / afterMs, 1)})` }} />
           </div>
           <figcaption className={styles.caption}>
-            이후 · {race.afterLabel}
-            {afterDone ? ' · 끝남' : ''}
+            {race.afterLabel}
+            {afterDone ? ` · ${race.done}` : ''}
           </figcaption>
         </figure>
       </div>

@@ -1,3 +1,5 @@
+export const impactTitle = '숫자로 본 개선'
+
 export type ImpactRow = { year: string; where: string; what: string; before: string; after: string }
 
 export const impact: ImpactRow[] = [
@@ -21,8 +23,13 @@ export const race = {
   beforeMs: 18_000,
   afterMs: 53,
   rows: '5,001건',
-  beforeLabel: 'PK 전량 스캔',
-  afterLabel: '보조 인덱스, p99 98ms',
+  beforeLabel: '이전 · PK 전량 스캔',
+  afterLabel: '이후 · 보조 인덱스, p99 98ms',
+  replay: '두 쿼리 다시 돌리기',
+  running: '도는 중…',
+  stillRunning: '아직 읽는 중',
+  done: '끝남',
+  afterFirst: '새 쿼리는 이미 끝남',
   story:
     '캐시워크 챌린지 채널 구독자 53만 명을 뽑는 주 1회 크론이 3,889만 행을 전부 읽고 있었습니다. ORDER BY … LIMIT 때문에 옵티마이저가 PK 스캔을 골랐고, 찾는 행은 테이블 끝에 몰려 있었습니다. 통계 갱신, 히스토그램, LIMIT 조정을 하나씩 검증해 기각한 뒤 보조 인덱스를 강제했습니다.',
 }
