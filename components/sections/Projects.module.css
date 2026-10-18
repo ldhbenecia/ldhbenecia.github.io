@@ -51,6 +51,16 @@
   min-width: 0;
 }
 
+/* 화면 캡처 전체가 확대 버튼 */
+.zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
 .framed img,
 .window img {
   width: 100%;
@@ -112,9 +122,10 @@
   padding-inline: var(--margin);
 }
 
-.secondShot {
-  width: min(100%, 640px);
-  justify-self: end;
+.thumbs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
 
 /* 숫자 */
@@ -203,11 +214,6 @@
   max-width: 720px;
 }
 
-.pairSecond {
-  width: 72%;
-  justify-self: end;
-}
-
 /* pipeline: 커밋 하나가 배포가 되는 길 */
 .pipeline {
   display: flex;
@@ -286,10 +292,6 @@
   .side .sideShot {
     position: static;
     order: -1;
-  }
-
-  .pairSecond {
-    width: 100%;
   }
 
   .after,

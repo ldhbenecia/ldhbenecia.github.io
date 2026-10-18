@@ -112,6 +112,8 @@ Dark is the default; the light theme follows the system setting until the visito
 - **Navigation**: wordmark, section links with an accent underline on the current section, and the theme toggle. Below tablet width the links move into a full-screen menu sheet whose links rise in sequence.
 - **Theme toggle**: a moon that morphs into a sun; it is the origin of the theme-switch reveal.
 - **Experience cases**: title, problem and result are always visible; the detailed steps sit in an expandable section.
+- **AI practices**: a top-level section right after the impact table; a one-line accent lead, then four practices as title and muted body in two columns. Each practice states what was done and its measured result, never a claim of skill.
+- **Screenshot viewer**: every project screenshot is a button that opens a full-screen dialog over a dark scrim, independent of theme; arrow keys and buttons move within the same project, Esc or a click outside closes, and focus returns to the screenshot.
 - **Contact**: profile links at normal reading size with an arrow that nudges on hover; no oversized display type.
 - **Query replay**: two large figures with progress bars run the before and after timings in real time when the section enters the viewport, with a replay button.
 

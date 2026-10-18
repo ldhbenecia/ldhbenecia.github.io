@@ -27,13 +27,12 @@ export const projects: Project[] = [
     name: 'Mono Mail',
     years: '2024.07 – 2025.06',
     kind: '메일 웹앱',
-    line: '업무용 메일 경험을 다시 만든 웹앱. 2025 Y Combinator Spring·Summer 배치 최종 인터뷰까지 갔고, 기업가치 50억 원으로 약 5억 원을 실제로 투자받았습니다. AI 코딩 도구 없이, 회사와 학업을 병행하며 1년 동안 서버를 만들었습니다.',
+    line: '업무용 메일 경험을 다시 만든 웹앱. 사용자가 2,000명을 넘었고, 2025 Y Combinator Spring·Summer 배치 최종 인터뷰까지 갔으며, 기업가치 50억 원으로 약 5억 원을 실제로 투자받았습니다. AI 코딩 도구 없이 회사와 학업을 병행하며 1년 동안 서버를 만들었고, 지금은 서비스를 종료했습니다.',
     role: '서버 개발 · FE 1 / BE 2',
     stack: 'Java, Spring Boot, JPA, MySQL, Firestore, Flyway, GCP Cloud Run, Docker',
-    links: [{ label: 'monomail.co', href: 'https://monomail.co' }],
+    links: [{ label: 'monomail.co 소개 페이지', href: 'https://monomail.co' }],
     facts: [
-      { label: '미국 사용자', value: '400+' },
-      { label: '연동 계정', value: '500+' },
+      { label: '사용자', value: '2,000+' },
       { label: '투자 유치', value: '5억' },
     ],
     images: [
@@ -45,12 +44,12 @@ export const projects: Project[] = [
         body: '여러 메일 계정을 연동하고 Space 단위로 나눠 관리하는 구조를 설계하고, 계정을 연결할 Target Member 로직을 FE·BE 모두 구현했습니다. 설계 시나리오를 문서로 남겼습니다.',
       },
       {
-        title: 'ChatGPT 기반 메일 기능',
-        body: 'HTML 파싱과 프롬프트 설계로 인증코드 추출 응답을 13초에서 2초로 줄였습니다. Gmail 스레드를 Base64 디코딩과 Jsoup으로 텍스트화해 요약하고, 발송 전 교정과 톤 조정 기능을 만들었습니다.',
+        title: '개발자도 못 읽는 개인정보',
+        body: 'Google CASA Tier 2 보안 심사 기준에 맞춰 개인정보 저장 구간을 AES로 암호화하고, 데이터 특성에 맞는 IV를 적용했습니다. DB 접근 권한이 있는 개발자도 원문을 볼 수 없게 설계했습니다.',
       },
       {
-        title: '개발자도 못 읽는 개인정보',
-        body: 'CASA Tier 2 기준에 맞춰 AES 암호화와 데이터 특성에 맞는 IV를 적용하고, 운영 중에 기존 평문 데이터를 암호화하는 마이그레이션을 만들었습니다. Flyway로 운영 DB 형상을 관리했습니다.',
+        title: '운영 중인 DB를 멈추지 않고 바꾸기',
+        body: 'Flyway를 도입해 운영 DB 스키마를 버전으로 관리하고 배포 시점의 형상을 맞췄습니다. 보안 정책이 바뀌었을 때는 연락처·프로필·회원 이름 같은 기존 평문 데이터를 서비스를 내리지 않고 암호화하는 마이그레이션을 설계해 적용했습니다.',
       },
       {
         title: '공유, 트래킹, 대기자 운영',
@@ -76,11 +75,14 @@ export const projects: Project[] = [
     images: [
       { src: '/images/cairn_statistic.png', alt: 'Cairn 대시보드. PR 608, 커밋 2,275, 활동일 119와 누적 활동 그래프', width: 1800, height: 1161, framed: true },
       { src: '/images/cairn_graph.png', alt: 'Cairn 그래프 뷰. 일간·주간·월간 일지가 위키 링크로 이어진 네트워크', width: 1800, height: 1161, framed: true },
+      { src: '/images/cairn_summarizing.png', alt: 'Cairn 일지 발행. 활동 수집 → AI 요약 → 일지 기록 단계 진행 표시', width: 1800, height: 1161, framed: true },
+      { src: '/images/cairn_backfill.png', alt: 'Cairn 백필. 지난 여러 날을 하루씩 수집·요약·발행하는 진행 트리', width: 1800, height: 1161, framed: true },
+      { src: '/images/cairn_worklog.png', alt: 'Cairn이 생성한 업무 일지. Summary·Share·Done 으로 정리된 하루 작업', width: 1240, height: 760, framed: true },
     ],
     points: [
       {
         title: 'AI를 규칙과 검증으로 통제하는 팀원처럼',
-        body: 'CLAUDE.md와 AGENTS.md로 Claude Code와 Codex가 같은 규칙을 읽게 하고, 규칙 7종과 ADR·진행 일지를 작업 전에 먼저 읽도록 구성했습니다. PR 리뷰 스킬, Husky·commitlint, CI의 typecheck·lint·test로 사람이 보기 전에 체계가 먼저 거르고, 머지된 PR의 리뷰를 주기적으로 전수 감사해 놓친 지적 8건을 반영했습니다. 평일 업무 시간 커밋 4% 수준으로 PR 330개 이상을 유지하고 있습니다.',
+        body: 'CLAUDE.md와 AGENTS.md로 Claude Code와 Codex가 같은 규칙을 읽게 하고, 규칙 7종과 ADR·진행 일지를 작업 전에 먼저 읽도록 구성했습니다. PR 리뷰 스킬, Husky·commitlint, CI의 typecheck·lint·test로 사람이 보기 전에 체계가 먼저 거르고, 머지된 PR의 리뷰를 주기적으로 전수 감사해 놓친 지적 8건을 반영했습니다. 커밋의 98%를 퇴근 후와 주말에 하면서 PR 330개 이상을 이어 왔습니다.',
       },
       {
         title: '요약 96초 → 28초, 출력 토큰 85% 절감',

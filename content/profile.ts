@@ -40,7 +40,7 @@ export const about = {
   ],
   tools: [
     { label: '언어', value: 'Java, Kotlin, TypeScript, Python' },
-    { label: '서버', value: 'Spring Boot, NestJS, JPA, Prisma, FastAPI' },
+    { label: '서버', value: 'Spring Boot, NestJS' },
     { label: '데이터', value: 'MySQL, Redis, MongoDB, Kafka, RabbitMQ' },
     { label: '운영', value: 'Kubernetes, Argo CD, Helm, Terraform, Docker, GitHub Actions' },
     { label: '관측', value: 'OpenTelemetry, Prometheus, Grafana, Loki, Tempo, Sentry' },

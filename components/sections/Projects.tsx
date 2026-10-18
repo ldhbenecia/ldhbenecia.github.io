@@ -2,10 +2,11 @@ import { MetaList } from '@/components/ui/MetaList'
 import { projects, type Project, type ProjectImage } from '@/content/projects'
 import styles from './Projects.module.css'
 
-function Shot({ image, className }: { image: ProjectImage; className?: string }) {
+// 누르면 Lightbox 가 같은 group 의 이미지들을 크게 보여 줌
+function Shot({ image, group, className }: { image: ProjectImage; group: string; className?: string }) {
   return (
     <figure className={`${styles.shot} ${className ?? ''}`} data-shutter>
-      <div className={image.framed ? styles.framed : styles.window}>
+      <button type="button" className={`${styles.zoom} ${image.framed ? styles.framed : styles.window}`} data-zoom-group={group} aria-label={`크게 보기: ${image.alt}`}>
         {!image.framed && (
           <div className={styles.chrome} aria-hidden="true">
             <span />
@@ -21,7 +22,7 @@ function Shot({ image, className }: { image: ProjectImage; className?: string })
           loading="lazy"
           decoding="async"
         />
-      </div>
+      </button>
       {image.caption && <figcaption className={styles.caption}>{image.caption}</figcaption>}
     </figure>
   )
@@ -117,11 +118,11 @@ function Body({ p }: { p: Project }) {
     case 'wide':
       return (
         <>
-          <Shot image={p.images[0]} className={styles.wideShot} />
+          <Shot image={p.images[0]} group={p.id} className={styles.wideShot} />
           <div className={`wrap ${styles.after}`}>
             <Facts p={p} />
             <Points p={p} />
-            {p.images[1] && <Shot image={p.images[1]} className={styles.secondShot} />}
+            <Thumbs p={p} />
           </div>
         </>
       )
@@ -129,15 +130,15 @@ function Body({ p }: { p: Project }) {
       return (
         <div className={`wrap ${styles.side}`}>
           <Points p={p} columns={1} />
-          <Shot image={p.images[0]} className={styles.sideShot} />
+          <Shot image={p.images[0]} group={p.id} className={styles.sideShot} />
         </div>
       )
     case 'pair':
       return (
         <div className={`wrap ${styles.pair}`}>
           <div className={styles.pairShots}>
-            <Shot image={p.images[0]} />
-            {p.images[1] && <Shot image={p.images[1]} className={styles.pairSecond} />}
+            <Shot image={p.images[0]} group={p.id} />
+            <Thumbs p={p} />
           </div>
           <div>
             <Facts p={p} />
@@ -153,6 +154,19 @@ function Body({ p }: { p: Project }) {
         </div>
       )
   }
+}
+
+// 첫 화면 다음의 캡처들. 작게 모아 두고 누르면 크게 봄
+function Thumbs({ p }: { p: Project }) {
+  const rest = p.images?.slice(1) ?? []
+  if (!rest.length) return null
+  return (
+    <div className={styles.thumbs}>
+      {rest.map((img) => (
+        <Shot key={img.src} image={img} group={p.id} />
+      ))}
+    </div>
+  )
 }
 
 export function Projects() {
