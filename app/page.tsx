@@ -1,28 +1,31 @@
-import { ThemeProvider } from '../components/ThemeProvider'
-import { Navigation } from '../components/Navigation'
-import { HeroSection } from '../components/HeroSection'
-import { AboutSection } from '../components/AboutSection'
-import { SkillsSection } from '../components/SkillsSection'
-import { ExperienceSection } from '../components/ExperienceSection'
-import { ProjectsSection } from '../components/ProjectsSection'
-import { EducationSection } from '../components/EducationSection'
-import { Footer } from '../components/Footer'
+import { Footer } from '@/components/layout/Footer'
+import { Nav } from '@/components/layout/Nav'
+import { About } from '@/components/sections/About'
+import { Contact } from '@/components/sections/Contact'
+import { Experience } from '@/components/sections/Experience'
+import { Hero } from '@/components/sections/Hero'
+import { Impact } from '@/components/sections/Impact'
+import { ProjectIndex } from '@/components/sections/ProjectIndex'
+import { Projects } from '@/components/sections/Projects'
+import { QueryRace } from '@/components/sections/QueryRace'
 
 export default function HomePage() {
   return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        <main>
-          <HeroSection />
-          <AboutSection />
-          <SkillsSection />
-          <ExperienceSection />
-          <ProjectsSection />
-          <EducationSection />
-        </main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <>
+      <Nav />
+      <Hero />
+      <main>
+        <QueryRace />
+        <Impact />
+        <Experience />
+        <section id="projects" aria-label="프로젝트">
+          <ProjectIndex />
+          <Projects />
+        </section>
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   )
 }

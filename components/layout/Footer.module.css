@@ -1,0 +1,24 @@
+.footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px 24px;
+  padding: 28px var(--edge);
+  font-size: var(--step-xs);
+  color: var(--muted);
+}
+
+.footer > a {
+  justify-self: end;
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .footer {
+    grid-template-columns: 1fr auto;
+  }
+
+  .built {
+    display: none;
+  }
+}

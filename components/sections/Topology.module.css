@@ -1,0 +1,62 @@
+.canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .canvas {
+    opacity: 0;
+    animation: canvas-in 1400ms var(--ease-soft) 200ms forwards;
+  }
+}
+
+@keyframes canvas-in {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 그래프 상태. 노드 수와 초당 요청 수를 그래프가 직접 갱신함 */
+.status {
+  position: absolute;
+  z-index: 2;
+  right: var(--edge);
+  bottom: clamp(48px, 9vh, 96px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--step-small);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .status {
+    opacity: 0;
+    animation: canvas-in 700ms var(--ease-out) 750ms forwards;
+  }
+
+  .dot {
+    animation: beat 2s ease-in-out infinite;
+  }
+}
+
+@keyframes beat {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 960px) {
+  .status {
+    display: none;
+  }
+}

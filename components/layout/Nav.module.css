@@ -1,0 +1,192 @@
+.nav {
+  position: fixed;
+  z-index: 50;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--nav-h);
+  padding-inline: var(--edge);
+  transition: background-color 300ms ease;
+}
+
+/* 히어로를 지나면 바닥색을 깔아 아래 글자와 겹치지 않게 함 */
+.nav[data-scrolled='true'] {
+  background: var(--bg);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.wordmark {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.links {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.link {
+  position: relative;
+  display: block;
+  padding: 6px 12px;
+  font-size: var(--step-small);
+  color: var(--muted);
+  transition: color var(--t-hover) ease;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-move) var(--ease-out);
+}
+
+.link[aria-current='location'] {
+  color: var(--ink);
+}
+
+.link[aria-current='location']::after {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    color: var(--ink);
+  }
+}
+
+/* 모바일 메뉴 버튼. 두 줄이 열리면 X 로 겹침 */
+.menuButton {
+  display: none;
+  position: relative;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menuButton span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ink);
+  transition: transform var(--t-move) var(--ease-out);
+}
+
+.menuButton span:first-child {
+  transform: translateY(-4px);
+}
+
+.menuButton span:last-child {
+  transform: translateY(4px);
+}
+
+.nav[data-open='true'] .menuButton span:first-child {
+  transform: rotate(45deg);
+}
+
+.nav[data-open='true'] .menuButton span:last-child {
+  transform: rotate(-45deg);
+}
+
+.sheet {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 40px;
+  padding: calc(var(--nav-h) + 32px) var(--margin) 48px;
+  background: var(--bg);
+}
+
+.sheet[hidden] {
+  display: none;
+}
+
+.sheetLink {
+  display: block;
+  padding: 6px 0;
+  font-size: clamp(2rem, 10vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--muted);
+}
+
+.sheetLink[aria-current='location'] {
+  color: var(--ink);
+}
+
+.sheetMail {
+  display: flex;
+  gap: 20px;
+  font-size: var(--step-body);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sheet li,
+  .sheetMail {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: sheet-in 600ms var(--ease-out) forwards;
+    animation-delay: calc(var(--i) * 55ms + 60ms);
+  }
+
+  .sheet:not([hidden]) {
+    animation: sheet-fade 250ms ease;
+  }
+}
+
+@keyframes sheet-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sheet-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* 메뉴가 열리면 막대 아래 줄과 바탕을 시트와 같게 */
+.nav[data-open='true'] {
+  background: var(--bg);
+  box-shadow: none;
+}
+
+.wordmark,
+.nav > :global(button) {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 720px) {
+  .links {
+    display: none;
+  }
+
+  .wordmark {
+    margin-right: auto;
+  }
+
+  .menuButton {
+    display: block;
+  }
+}

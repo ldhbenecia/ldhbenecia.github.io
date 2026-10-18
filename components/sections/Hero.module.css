@@ -1,0 +1,105 @@
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  background: var(--bg);
+  touch-action: pan-y;
+}
+
+/* 그래프가 문구 뒤로 내려와도 글자가 읽히도록 아래쪽만 어둡게 */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 45%;
+  background: linear-gradient(to top, var(--bg) 35%, transparent);
+  pointer-events: none;
+}
+
+.content {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: clamp(48px, 9vh, 96px);
+  pointer-events: none;
+}
+
+.content a {
+  pointer-events: auto;
+}
+
+.title {
+  font-size: var(--step-display);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.line > span {
+  display: block;
+}
+
+.sentence {
+  max-width: 40ch;
+  margin-top: 28px;
+  font-size: var(--step-lead);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .line > span {
+    transform: translateY(105%);
+    animation: line-up 900ms var(--ease-out) forwards;
+    animation-delay: calc(var(--i) * 110ms + 300ms);
+  }
+
+  :global(.js) .sentence,
+  :global(.js) .actions {
+    opacity: 0;
+    animation: fade-up 700ms var(--ease-out) 750ms forwards;
+  }
+
+  :global(.js) .actions {
+    animation-delay: 850ms;
+  }
+}
+
+@keyframes line-up {
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .sentence {
+    font-size: var(--step-body);
+  }
+}

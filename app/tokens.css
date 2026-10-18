@@ -1,0 +1,91 @@
+/* 브레이크포인트는 두 개만 씀 (미디어 쿼리에는 변수를 쓸 수 없어 숫자로 적음)
+   720px 이하 = 폰, 960px 이하 = 태블릿 */
+
+:root {
+  /* 검정과 짙은 네이비. 밝은 면은 두지 않고, 액센트는 링크·포인트·인터랙션에만 */
+  --bg: #050608;
+  --surface: #0b1220;
+  --surface-2: #101a2e;
+  --line: #1c2840; /* 토폴로지 선, 표 줄무늬 */
+  --ink: #e6e9ee;
+  --muted: #8a93a3; /* --bg 위 대비 6.6:1 */
+  --accent: #7b9fd4; /* 채도 낮은 스틸 블루. --bg 위 대비 7.4:1 */
+  --accent-strong: #9bb8e6;
+  --accent-ink: #050608;
+  --button-hover: #ffffff;
+
+  /* 맥 창 모양의 화면 캡처. 두 테마에서 같은 값 */
+  --window: #16181d;
+  --window-edge: rgba(255, 255, 255, 0.09);
+  --window-shadow: 0 28px 60px -20px rgba(0, 0, 0, 0.7);
+  --chrome-close: #ff5f57;
+  --chrome-min: #febc2e;
+  --chrome-max: #28c840;
+
+  /* 히어로 그래프. canvas 가 테마가 바뀔 때마다 다시 읽음 */
+  --topo-line: rgba(60, 84, 128, 0.55);
+  --topo-line-hot: rgba(123, 159, 212, 0.9);
+  --topo-label: #6f7889;
+  --topo-label-hot: #e6e9ee;
+  --topo-pulse: #9bb8e6;
+  --topo-platform: #7b9fd4;
+  --topo-msa: #c3cbd8;
+  --topo-morris: #5b7bb0;
+  --topo-app: #8a93a3;
+
+  --font-display: var(--font-geist), 'Pretendard Variable', Pretendard, system-ui, sans-serif;
+  --font-text: var(--font-geist), 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --step-xs: 0.75rem;
+  --step-small: 0.8125rem;
+  --step-body: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+  --step-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.3125rem);
+  --step-head: clamp(1.875rem, 1.1rem + 3vw, 3.5rem);
+  --step-display: clamp(2.25rem, 1rem + 4vw, 4.75rem);
+  --step-figure: clamp(2.25rem, 1.2rem + 3.5vw, 4.25rem); /* 커밋 수 같은 큰 숫자 */
+
+  --margin: clamp(16px, 2.2vw, 32px);
+  --gap-section: clamp(96px, 10vw, 160px);
+  --max: 1200px;
+  /* 화면 끝까지 닿는 막대(내비·푸터)의 안쪽 여백. 내용 열과 같은 세로선에 맞춤 */
+  --edge: max(var(--margin), calc((100vw - var(--max)) / 2 + var(--margin)));
+  /* 고정 내비 높이. 내비 패딩과 앵커 여백·sticky 위치가 모두 여기서 나옴 */
+  --nav-h: 68px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --t-press: 140ms;
+  --t-hover: 180ms;
+  --t-move: 400ms; /* 화살표·밑줄처럼 손에 반응해 움직이는 것 */
+}
+
+/* 라이트. 같은 역할을 밝은 바탕에서 대비 4.5:1 이상으로 */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f5f6f8;
+  --surface: #eaedf2;
+  --surface-2: #dfe4ec;
+  --line: #d0d7e2;
+  --ink: #0b1220;
+  --muted: #536072; /* --bg 위 대비 6.2:1 */
+  --accent: #2c5aa6; /* --bg 위 대비 6.6:1 */
+  --accent-strong: #1f4682;
+  --accent-ink: #ffffff;
+  --button-hover: #1f4682;
+
+  --topo-line: rgba(44, 90, 166, 0.28);
+  --topo-line-hot: rgba(44, 90, 166, 0.85);
+  --topo-label: #6b7586;
+  --topo-label-hot: #0b1220;
+  --topo-pulse: #2c5aa6;
+  --topo-platform: #2c5aa6;
+  --topo-msa: #0b1220;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --gap-section: 80px;
+    --nav-h: 60px;
+  }
+}

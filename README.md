@@ -1,13 +1,34 @@
-# Donghyeok Lim
+# ldhbenecia.github.io
 
-Portfolio Website
+Portfolio of Donghyeok Lim, backend engineer.
 
 🔗 [ldhbenecia.github.io](https://ldhbenecia.github.io)
 
-## Tech Stack
+## Stack
 
-Next.js 14 · TypeScript · Tailwind CSS · Radix UI · shadcn/ui
+Next.js 16 (static export) · React 19 · TypeScript · CSS Modules · GitHub Pages
 
 ## Development
 
-Figma AI를 활용한 바이브코딩으로 구현했으며, 세밀한 부분은 직접 수정했습니다.
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run typecheck
+npm run build      # static output in out/
+```
+
+Pushing to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml`.
+
+## Structure
+
+```
+app/                 layout, page, design tokens (tokens.css), global styles
+components/
+  layout/            navigation, footer
+  sections/          one section per file, styles in a matching .module.css
+  motion/            scroll-reveal observer
+content/             all resume data — edit here, not in components
+docs/adr.md          design and technical decisions
+public/images/       product screenshots
+DESIGN.md            design system (tokens + usage rules)
+```

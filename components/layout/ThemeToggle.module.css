@@ -1,0 +1,54 @@
+.toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out);
+}
+
+.toggle:active {
+  transform: scale(0.92);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .toggle:hover {
+    background: var(--surface-2);
+  }
+}
+
+/* 다크에서는 달(원에 그림자가 파고듦), 라이트에서는 해(빛살이 돌며 나옴).
+   React 상태가 아니라 페인트 전에 정해지는 html 의 data-theme 을 봐서 로드 때 변형이 재생되지 않음 */
+.core,
+.cut,
+.rays {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 500ms var(--ease-out), opacity 300ms ease;
+}
+
+:global(:root:not([data-theme='light'])) .core {
+  transform: scale(1.5);
+}
+
+:global(:root:not([data-theme='light'])) .rays {
+  opacity: 0;
+  transform: rotate(-60deg) scale(0.6);
+}
+
+:global(:root[data-theme='light']) .cut {
+  transform: translate(8px, -8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core,
+  .cut,
+  .rays {
+    transition: opacity 200ms ease;
+  }
+}

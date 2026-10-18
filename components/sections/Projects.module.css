@@ -1,0 +1,301 @@
+.projects {
+  display: grid;
+}
+
+.chapter {
+  padding-top: var(--gap-section);
+}
+
+.head {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 24px;
+  row-gap: 28px;
+}
+
+.name {
+  grid-column: 1 / -1;
+  font-family: var(--font-display);
+  font-size: var(--step-head);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.line {
+  grid-column: 1 / 8;
+  font-size: var(--step-lead);
+  line-height: 1.5;
+}
+
+.meta {
+  --cols: 2fr 1fr 4fr 2fr;
+  grid-column: 1 / -1;
+  margin-top: 8px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.after {
+  display: grid;
+  gap: 80px;
+  margin-top: 80px;
+}
+
+/* 그림 */
+.shot {
+  min-width: 0;
+}
+
+.framed img,
+.window img {
+  width: 100%;
+  transition: transform 1200ms var(--ease-soft);
+}
+
+/* 이미지 자체에 창 테두리가 없는 화면에 같은 모양의 맥 창을 씌움 */
+.window {
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--window);
+  box-shadow: 0 0 0 1px var(--window-edge), var(--window-shadow);
+}
+
+.window img {
+  border-radius: 0 0 10px 10px;
+}
+
+.chrome {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+}
+
+.chrome span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.chrome span:nth-child(1) {
+  background: var(--chrome-close);
+}
+
+.chrome span:nth-child(2) {
+  background: var(--chrome-min);
+}
+
+.chrome span:nth-child(3) {
+  background: var(--chrome-max);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .shot:hover img {
+    transform: scale(1.012);
+  }
+}
+
+.caption {
+  margin-top: 12px;
+  font-size: var(--step-small);
+  color: var(--muted);
+}
+
+/* 화면 캡처는 본문 폭을 다 채우지 않음. 한눈에 들어오는 크기로 */
+.wideShot {
+  max-width: calc(880px + 2 * var(--margin));
+  margin: 72px auto 0;
+  padding-inline: var(--margin);
+}
+
+.secondShot {
+  width: min(100%, 640px);
+  justify-self: end;
+}
+
+/* 숫자 */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px clamp(40px, 7vw, 120px);
+}
+
+.factValue {
+  font-family: var(--font-display);
+  font-size: var(--step-figure);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.factLabel {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+/* dl 은 dt 가 먼저여야 해서 마크업은 라벨 → 숫자, 화면은 숫자 → 라벨 */
+.facts > div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* 글 */
+.points {
+  display: grid;
+  gap: 56px clamp(32px, 5vw, 96px);
+}
+
+.points[data-cols='2'] {
+  grid-template-columns: 1fr 1fr;
+}
+
+.points[data-cols='3'] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.point {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.pointTitle {
+  font-size: var(--step-lead);
+}
+
+/* side: 글 왼쪽, 세로로 긴 화면 오른쪽 */
+.side {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: clamp(40px, 6vw, 120px);
+  margin-top: 80px;
+  align-items: start;
+}
+
+.sideShot {
+  position: sticky;
+  top: calc(var(--nav-h) + 28px);
+  width: min(100%, 420px);
+  justify-self: end;
+}
+
+/* pair: 화면 두 장 왼쪽, 글 오른쪽 */
+.pair {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: clamp(40px, 5vw, 96px);
+  margin-top: 80px;
+  align-items: start;
+}
+
+.pair > div:last-child {
+  display: grid;
+  gap: 64px;
+}
+
+.pairShots {
+  display: grid;
+  gap: 24px;
+  max-width: 720px;
+}
+
+.pairSecond {
+  width: 72%;
+  justify-self: end;
+}
+
+/* pipeline: 커밋 하나가 배포가 되는 길 */
+.pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: var(--step-lead);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  padding: 18px 22px;
+  border-radius: 6px;
+  background: var(--surface);
+  position: relative;
+  isolation: isolate;
+}
+
+/* 커밋 하나가 단계를 차례로 지나가는 것처럼 한 칸씩 점등.
+   색 대신 덧씌운 층의 opacity 만 바꿔 합성 단계에서 처리됨 */
+.step::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .step::before {
+    animation: lit 7.2s var(--ease-in-out) infinite;
+    animation-delay: calc(var(--i, 0) * 1.2s);
+  }
+}
+
+@keyframes lit {
+  0%,
+  14% {
+    opacity: 1;
+  }
+  22%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.step:not(:last-child)::after {
+  content: '→';
+  margin-left: 6px;
+  color: var(--accent);
+}
+
+@media (max-width: 960px) {
+  .line {
+    grid-column: 1 / -1;
+  }
+
+  .points[data-cols='2'],
+  .points[data-cols='3'] {
+    grid-template-columns: 1fr;
+  }
+
+  .side,
+  .pair {
+    grid-template-columns: 1fr;
+  }
+
+  .side .sideShot {
+    position: static;
+    order: -1;
+  }
+
+  .pairSecond {
+    width: 100%;
+  }
+
+  .after,
+  .side,
+  .pair,
+  .wideShot {
+    margin-top: 56px;
+  }
+}
