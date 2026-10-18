@@ -23,6 +23,7 @@ const readColors = () => {
 
 const REPEL_RADIUS = 150
 const HOVER_RADIUS = 26
+const LABEL_ROOM = 112 // 가장 긴 라벨(sealed-secrets) 폭
 
 type Body = TopoNode & { ax: number; ay: number; px: number; py: number; vx: number; vy: number; phase: number; flash: number }
 type Pulse = { from: number; to: number; t: number; speed: number }
@@ -69,7 +70,9 @@ export function Topology({ statusId }: { statusId: string }) {
       const left = Math.max(margin, (w - maxW) / 2 + margin)
       const cw = w - left * 2
       for (const b of bodies) {
-        b.ax = wide ? left + (0.42 + (b.x - 0.3) * 0.78) * cw : left + (b.x - 0.3) * 1.02 * cw
+        // 노드 x 범위(0.3~0.94)를 펼쳐 쓰고, 오른쪽엔 라벨이 들어갈 자리를 남김
+        const t = (b.x - 0.3) / 0.64
+        b.ax = wide ? left + (0.42 + t * 0.5) * cw : left + 6 + t * (cw - 6 - LABEL_ROOM)
         b.ay = wide ? (0.14 + b.y * 0.66) * h : (0.12 + b.y * 0.44) * h
         if (b.px === 0 && b.py === 0) {
           b.px = b.ax
