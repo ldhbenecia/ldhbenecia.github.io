@@ -8,7 +8,6 @@ import { Impact } from '@/components/sections/Impact'
 import { ProjectIndex } from '@/components/sections/ProjectIndex'
 import { Projects } from '@/components/sections/Projects'
 import { QueryRace } from '@/components/sections/QueryRace'
-import { Shelf } from '@/components/sections/Shelf'
 
 export default function HomePage() {
   return (
@@ -23,7 +22,6 @@ export default function HomePage() {
           <ProjectIndex />
           <Projects />
         </section>
-        <Shelf />
         <About />
         <Contact />
       </main>
