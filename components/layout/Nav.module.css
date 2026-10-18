@@ -5,13 +5,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 20px var(--edge);
-  transition: background-color 300ms ease, padding 300ms var(--ease-out);
+  height: var(--nav-h);
+  padding-inline: var(--edge);
+  transition: background-color 300ms ease;
 }
 
 /* 히어로를 지나면 바닥색을 깔아 아래 글자와 겹치지 않게 함 */
 .nav[data-scrolled='true'] {
-  padding-block: 14px;
   background: var(--bg);
   box-shadow: 0 1px 0 var(--line);
 }
@@ -46,7 +46,7 @@
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 400ms var(--ease-out);
+  transition: transform var(--t-move) var(--ease-out);
 }
 
 .link[aria-current='location'] {
@@ -83,7 +83,7 @@
   height: 2px;
   border-radius: 1px;
   background: var(--ink);
-  transition: transform 400ms var(--ease-out);
+  transition: transform var(--t-move) var(--ease-out);
 }
 
 .menuButton span:first-child {
@@ -110,7 +110,7 @@
   flex-direction: column;
   justify-content: flex-end;
   gap: 40px;
-  padding: 96px var(--margin) 48px;
+  padding: calc(var(--nav-h) + 32px) var(--margin) 48px;
   background: var(--bg);
 }
 
@@ -178,14 +178,6 @@
 }
 
 @media (max-width: 720px) {
-  .nav {
-    padding-block: 12px;
-  }
-
-  .nav[data-scrolled='true'] {
-    padding-block: 10px;
-  }
-
   .links {
     display: none;
   }

@@ -4,7 +4,7 @@ import styles from './Contact.module.css'
 export function Contact() {
   return (
     <section className={`wrap ${styles.section}`} aria-labelledby="contact-title" id="contact">
-      <h2 id="contact-title" className={styles.title} data-reveal>
+      <h2 id="contact-title" className="section-label" data-reveal>
         Contact
       </h2>
       <ul className={styles.list}>

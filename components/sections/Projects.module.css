@@ -70,7 +70,7 @@
   overflow: hidden;
   border-radius: 10px;
   background: var(--window);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.09), 0 28px 60px -20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 0 1px var(--window-edge), var(--window-shadow);
 }
 
 .window img {
@@ -87,19 +87,18 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: #3a3e47;
 }
 
 .chrome span:nth-child(1) {
-  background: #ff5f57;
+  background: var(--chrome-close);
 }
 
 .chrome span:nth-child(2) {
-  background: #febc2e;
+  background: var(--chrome-min);
 }
 
 .chrome span:nth-child(3) {
-  background: #28c840;
+  background: var(--chrome-max);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -121,7 +120,6 @@
   padding-inline: var(--margin);
 }
 
-
 .secondShot {
   width: min(100%, 640px);
   justify-self: end;
@@ -136,7 +134,7 @@
 
 .factValue {
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 1.2rem + 3.5vw, 4.25rem);
+  font-size: var(--step-figure);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -149,11 +147,7 @@
 
 .facts > div {
   display: flex;
-  flex-direction: column-reverse;
-}
-
-.facts > div > .factValue {
-  order: 2;
+  flex-direction: column;
 }
 
 /* 글 */
@@ -176,10 +170,6 @@
   align-content: start;
 }
 
-.point p {
-  color: var(--ink);
-}
-
 .pointTitle {
   font-size: var(--step-lead);
 }
@@ -195,7 +185,7 @@
 
 .sideShot {
   position: sticky;
-  top: 96px;
+  top: calc(var(--nav-h) + 28px);
   width: min(100%, 420px);
   justify-self: end;
 }
@@ -230,7 +220,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  counter-reset: none;
 }
 
 .step {
@@ -238,7 +227,7 @@
   align-items: center;
   gap: 10px;
   font-family: var(--font-display);
-  font-size: clamp(1rem, 0.8rem + 0.6vw, 1.25rem);
+  font-size: var(--step-lead);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -275,12 +264,6 @@
 }
 
 @media (max-width: 960px) {
-  .points[data-cols='3'] {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 860px) {
   .line {
     grid-column: 1 / -1;
   }

@@ -76,7 +76,7 @@
   color: var(--muted);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .section {
     gap: 72px;
   }

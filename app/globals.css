@@ -10,8 +10,6 @@ html {
   -webkit-text-size-adjust: 100%;
   color-scheme: dark;
   interpolate-size: allow-keywords;
-  /* 커서 미리보기처럼 고정 위치 요소는 body 의 clip 을 벗어나므로 여기서도 막음 */
-  overflow-x: clip;
 }
 
 /* 테마 전환. View Transition 이 있으면 원형으로 드러나고(스크립트가 clip-path 를 애니메이션),
@@ -34,7 +32,7 @@ html {
 
 /* 고정 내비 아래로 섹션 머리가 가려지지 않게 */
 [id] {
-  scroll-margin-top: 72px;
+  scroll-margin-top: var(--nav-h);
 }
 
 body {
@@ -49,7 +47,6 @@ body {
   text-rendering: optimizeLegibility;
   word-break: keep-all;
   overflow-wrap: break-word;
-  overflow-x: clip;
 }
 
 h1,
@@ -176,6 +173,14 @@ button {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* 프로젝트·연락처럼 큰 제목 대신 쓰는 작은 섹션 이름 */
+.section-label {
+  margin-bottom: 24px;
+  font-size: var(--step-lead);
+  font-weight: 500;
+  color: var(--muted);
 }
 
 .wrap {

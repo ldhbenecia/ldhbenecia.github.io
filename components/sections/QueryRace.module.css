@@ -99,7 +99,7 @@
   color: var(--accent);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .head {
     grid-template-columns: 1fr;
     row-gap: 24px;

@@ -4,7 +4,7 @@
   align-items: center;
   gap: 8px 24px;
   padding: 28px var(--edge);
-  font-size: 0.75rem;
+  font-size: var(--step-xs);
   color: var(--muted);
 }
 

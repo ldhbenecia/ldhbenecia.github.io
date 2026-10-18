@@ -9,8 +9,8 @@ export function ProjectIndex() {
   const [hovered, setHovered] = useState(projects[0].id)
 
   return (
-    <nav className={styles.section} aria-label="프로젝트 목록">
-      <h2 className={styles.title} data-reveal>
+    <nav className={`wrap ${styles.section}`} aria-label="프로젝트 목록">
+      <h2 className="section-label" data-reveal>
         Projects
       </h2>
       <div className={styles.layout}>

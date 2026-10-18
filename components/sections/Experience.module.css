@@ -48,10 +48,6 @@
   font-size: var(--step-lead);
 }
 
-.problem {
-  color: var(--ink);
-}
-
 .details {
   margin-top: 4px;
 }
@@ -76,7 +72,7 @@
 .summary svg {
   width: 16px;
   height: 16px;
-  transition: transform 400ms var(--ease-out);
+  transition: transform var(--t-move) var(--ease-out);
 }
 
 .details[open] .summary svg {
@@ -129,7 +125,7 @@
   color: var(--accent);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .meta {
     grid-template-columns: 1fr 1fr;
   }

@@ -129,12 +129,12 @@
   }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .status {
     display: none;
   }
 
   .sentence {
-    font-size: 0.9375rem;
+    font-size: var(--step-body);
   }
 }
